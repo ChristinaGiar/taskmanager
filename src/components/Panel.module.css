@@ -1,0 +1,12 @@
+
+.panelContainer {
+    padding: 5rem 2rem;
+    background-color:rgba(0, 139, 139, 0.365);
+}
+.panel {
+    background-color: var(--white-color);
+    padding: 5rem 2rem;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
