@@ -1,0 +1,33 @@
+.task {
+    cursor: pointer;
+}
+
+.taskTitle {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.taskStatusWrapper {
+    padding: 20px;
+    border-radius: 50px;
+    background-color: var(--white-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+}
+
+.taskStatus {
+    height: 19px;
+    width: 19px;
+}
+
+.dashed {
+    border: dashed 2px var(--blue-color);
+    border-radius: 8px;
+}
+
+.dashed .task {
+    opacity: 0;
+}
