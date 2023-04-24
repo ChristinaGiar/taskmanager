@@ -5,7 +5,7 @@ import Modal from './Modal';
 
 import classes from './Task.module.css';
 
-const Task = ({ task, index, moveItem, status }) => {
+const Task = ({ task, index, moveItem, status, deleteTask }) => {
     const ref = useRef(null);
 
     const [, drop] = useDrop({
@@ -16,6 +16,7 @@ const Task = ({ task, index, moveItem, status }) => {
             }
             const dragIndex = task.index;
             const hoverIndex = index;
+            console.log(dragIndex, hoverIndex);
 
             if (dragIndex === hoverIndex) {
                 return
@@ -51,6 +52,12 @@ const Task = ({ task, index, moveItem, status }) => {
     const toggleModal = () => {
         setTaskClicked((prevState) => (!prevState))
     }
+    
+    const deleteTaskHandler = (e) => {
+        e.stopPropagation();
+        deleteTask(task.id);
+        console.log("DELETE");
+    }
 
     drag(drop(ref));
 
@@ -62,6 +69,7 @@ const Task = ({ task, index, moveItem, status }) => {
                 onClick={toggleModal}
             >
                 <div className={classes.task} >
+                <i className={`fa-solid fa-trash-can ${classes.taskTrash}`} onClick={deleteTaskHandler}></i>
                     <div className={classes.taskStatusWrapper}>
                         <div className={classes.taskStatus}>{task.icon}</div>
                     </div>

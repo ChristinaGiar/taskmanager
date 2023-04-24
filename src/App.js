@@ -3,13 +3,18 @@ import Homepage from "./components/Dashboard";
 import Header from "./components/Header";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from 'react-dnd-html5-backend';
+// import AuthContext from '.store/auth-context';
+// import { AuthContextProvider } from "./store/auth-context";
 
 const App = () => {
+
     return (
-        <DndProvider backend={HTML5Backend}>
-            <Header />
-            <Homepage />
-        </DndProvider>
+        // <AuthContextProvider>
+            <DndProvider backend={HTML5Backend}>
+                <Header />
+                <Homepage />
+            </DndProvider>
+        // </AuthContextProvider>
     );
 };
 

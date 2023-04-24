@@ -22,3 +22,21 @@ a {
 p {
     overflow-wrap: break-word;
 }
+
+input {
+    border: none;
+}
+input:focus-visible {
+    outline: 1px solid black;
+}
+.inputTitle {
+    border: none;
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+[draggable="true"] {
+    margin-bottom: 20px;
+}

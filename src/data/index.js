@@ -12,11 +12,19 @@ const data = [{
     content: "Configure the content of the language page"
 }, {
     id: 3,
-    icon: "🔥",
-    status: "In progress",
-    title: "Update the contact page",
-    content: "Update the page adding the latest content"
-}, {
+    icon: "🤩",
+    status: "To Do",
+    title: "Landing Page Content",
+    content: "Configure the content of the language page"
+},
+//  {
+//     id: 3,
+//     icon: "🔥",
+//     status: "In progress",
+//     title: "Update the contact page",
+//     content: "Update the page adding the latest content"
+// }, 
+{
     id: 4,
     icon: "🤩",
     status: "To Do",
