@@ -7,9 +7,10 @@
     gap: 40px;
 }
 
+.dropWrapper > div {
+    width: 100%;
+}
 
 .highlight {
     background: #ffffff87;
-    /* border: dashed 2px red;
-    border-radius: 8px; */
 }

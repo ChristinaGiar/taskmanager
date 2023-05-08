@@ -2,19 +2,23 @@ import React from 'react'
 
 const ScrollButtons = () => {
 
-    const scrollLeftHandler = () => {
-            document.querySelector("my-scroll-container").scrollLeft += 30;
-    }
+  const scrollRightHandler = () => {
+    document.querySelector(".scroll-container").scrollLeft += 30;
+  }
 
-    const scrollRightHandler = () => {
-        document.querySelector("my-scroll-container").scrollLeft -= 30;
-}
+  const scrollLeftHandler = () => {
+    document.querySelector(".scroll-container").scrollLeft -= 30;
+  }
 
   return (
-    <>
-    <button className="button-left" onClick={scrollLeftHandler}>Left</button>
-    <button className="button-right" onClick={scrollRightHandler}>Right</button>
-    </>
+    <div className={"scroll-buttons"}>
+      <button className={"left-button"} onClick={scrollLeftHandler}>
+        <i className={"fa-solid fa-chevron-left"}></i>
+      </button>
+      <button className={"right-button"} onClick={scrollRightHandler}>
+        <i className={"fa-solid fa-chevron-right"}></i>
+      </button>
+    </div>
   )
 }
 

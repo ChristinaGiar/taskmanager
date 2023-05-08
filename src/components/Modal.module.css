@@ -6,7 +6,6 @@
     top: 0;
     left: 0;
     background-color: rgba(0,0,0,.3);
-    /* display: none; */
 }
 
 .modal {
@@ -14,7 +13,7 @@
     height: 50%;
     position: absolute;
     background-color: white;
-    padding: 40px 20px;
+    padding: 40px 46px 70px;
     border-radius: 14px;
     top: 50%;
     left: 50%;
@@ -26,9 +25,48 @@
     right: 25px;
     top: 25px;
     cursor: pointer;
+    padding: 5px;
 }
 
 .modalTitle {
     text-align: center;
+    width: 40%;
+    font-weight: 600;
+}
 
+.modalStatus {
+    background-color: var(--light-red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 39px;
+    border-radius: 40px;
+    margin-bottom: 20px;
+}
+
+.modalContent {
+    width: 80%;
+    min-height: 70px;
+}
+
+.modalProgress {
+    width: 8%;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.modalButton {
+    padding: 8px 34px;
+    position: absolute;
+    bottom: 20px;
+    right: 46px;
+    background-color: var(--light-red);
+}
+
+.modalOutlineButton {
+    padding: 6px 24px;
+    border: 2px solid var(--light-red);
+    background-color: transparent;
+    right: 163px;
 }

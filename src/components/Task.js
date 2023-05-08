@@ -1,47 +1,17 @@
 import React, { useState, useRef } from "react";
 import ReactDOM from "react-dom";
-import { useDrag, useDrop } from "react-dnd";
+import { useDrag } from "react-dnd";
 import Modal from './Modal';
 
 import classes from './Task.module.css';
 
-const Task = ({ task, index, moveItem, status, deleteTask }) => {
+// hovered component
+const Task = ({ task, deleteTask }) => {
     const ref = useRef(null);
-
-    const [, drop] = useDrop({
-        accept: "task",
-        hover(task, monitor) {
-            if (!ref.current) {
-                return
-            }
-            const dragIndex = task.index;
-            const hoverIndex = index;
-            console.log(dragIndex, hoverIndex);
-
-            if (dragIndex === hoverIndex) {
-                return
-            }
-
-            const hoveredRect = ref.current.getBoundingClientRect();
-            const hoverMiddleY = (hoveredRect.bottom - hoveredRect.top) / 2;
-            const mousePosition = monitor.getClientOffset();
-            const hoverClientY = mousePosition.y - hoveredRect.top;
-
-            if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-                return;
-            }
-
-            if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-                return;
-            }
-            moveItem(dragIndex, hoverIndex);
-            task.index = hoverIndex;
-        },
-    });
 
     const [{ isDragging }, drag] = useDrag({
         type: "task",
-        item: { type: "task", ...task, index },
+        item: { ...task },
         collect: monitor => ({
             isDragging: monitor.isDragging()
         })
@@ -52,41 +22,46 @@ const Task = ({ task, index, moveItem, status, deleteTask }) => {
     const toggleModal = () => {
         setTaskClicked((prevState) => (!prevState))
     }
-    
+
     const deleteTaskHandler = (e) => {
         e.stopPropagation();
         deleteTask(task.id);
-        console.log("DELETE");
     }
 
-    drag(drop(ref));
+    drag(ref);
 
     return (
-        <>
+        <div ref={ref}>
             <div
-                ref={ref}
                 className={`${isDragging ? classes.dashed : ""}`}
                 onClick={toggleModal}
             >
                 <div className={classes.task} >
-                <i className={`fa-solid fa-trash-can ${classes.taskTrash}`} onClick={deleteTaskHandler}></i>
+                    <i className={`fa-solid fa-trash-can ${classes.taskTrash}`} onClick={deleteTaskHandler}></i>
                     <div className={classes.taskStatusWrapper}>
                         <div className={classes.taskStatus}>{task.icon}</div>
                     </div>
                     <p className={classes.taskTitle}>{task.title}</p>
+
+
+                    <div className={classes.progressWrapper}>
+                        <div className={classes.progress}>
+                            <div className={classes.progressBar}></div>
+                            <div className={classes.progressFilled} style={{ width: `${task.progress || 0}%` }}></div>
+                        </div>
+                        <div> {task.progress || 0} %</div>
+                    </div>
                 </div>
             </div>
             {taskClicked &&
                 ReactDOM.createPortal(
                     <Modal
-                        icon={task.icon}
-                        title={task.title}
-                        content={task.content}
+                        task={task}
                         onClose={toggleModal}
                     />, document.getElementById('overlay-root')
                 )
             }
-        </>
+        </div>
     );
 };
 

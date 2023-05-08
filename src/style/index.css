@@ -3,6 +3,9 @@
     --white-color: white;
     --text-color: #172b4d;
     --background-color: #f5eaea;
+    --light-red: #f4cccc;
+    --coral-red: #ee6a6a;
+    --light-grey: #80808051;
 }
 
 body {
@@ -11,6 +14,7 @@ body {
     margin: 0;
     height: 100%;
     background-color: #bebeff15;
+    background-color: #028090;
 }
 
 a {
@@ -23,20 +27,91 @@ p {
     overflow-wrap: break-word;
 }
 
-input {
+input,
+textarea {
+    display: block;
+    padding: 5px 0;
+    margin-bottom: 15px;
     border: none;
+    border-radius: 2px;
 }
-input:focus-visible {
-    outline: 1px solid black;
+
+input:focus-visible,
+textarea:focus-visible {
+    padding: 5px 10px;
+    background-color: rgba(244, 204, 204, 0.4);
+    outline: 0;
 }
+
+label {
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
 .inputTitle {
     border: none;
     display: block;
-    width: 80%;
     margin: 0 auto;
     text-align: center;
+    margin-bottom: 25px;
+}
+
+button {
+    border: none;
+    border-radius: 2px;
+}
+
+
+
+.scroll-buttons {
+    display: flex;
+    gap: 20px;
+    position: absolute;
+    width: auto;
+    right: 0;
+    bottom: 0;
+    transform: translateY(100%);
+}
+
+.left-button,
+.right-button {
+    height: 50px;
+    width: 50px;
+    border: 1px solid var(--white-color);
+    border-radius: 40px;
+    background-color: transparent;
+}
+
+.left-button:hover,
+.right-button:hover {
+    border-width: 2px;
+}
+
+.left-button i,
+.right-button i {
+    color: var(--white-color);
+}
+
+.add-column {
+    height: fit-content;
+    background: #ffffffce;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+.add-task {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    border-radius: 3px;
+    line-height: 18px;
+    padding: 2px 6px;
+    background-color: var(--white-color);
+    cursor: pointer;
 }
 
 [draggable="true"] {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }

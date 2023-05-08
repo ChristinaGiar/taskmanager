@@ -10,8 +10,9 @@
 .columnWrapper {
     display: flex;
     flex-direction: column;
+    position: relative;
     padding: 20px;
-    background-color: var(--background-color);
+    background-color: rgba(255,255,255,0.4);
     border-radius: 5px;
     height: 100%;
     min-height: 500px;

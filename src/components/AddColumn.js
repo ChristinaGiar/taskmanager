@@ -1,11 +1,13 @@
-import React from 'react'
+import React from 'react';
 
 const AddColumn = (props) => {
     const addColumnHandler = () => {
         props.addColumn();
     }
   return (
-    <div onClick={addColumnHandler}>+</div>
+    <div className={"col-6 col-sm-4 col-md-3"} onClick={addColumnHandler}>
+      <div className={"add-column"}> +  Add a column</div>
+      </div>
   )
 }
 
