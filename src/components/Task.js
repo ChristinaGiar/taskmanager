@@ -2,12 +2,14 @@ import React, { useState, useRef } from "react";
 import ReactDOM from "react-dom";
 import { useDrag } from "react-dnd";
 import Modal from './Modal';
+import { CSSTransition } from "react-transition-group";
 
 import classes from './Task.module.css';
 
 // hovered component
 const Task = ({ task, deleteTask }) => {
     const ref = useRef(null);
+    const nodeRef = useRef(null);
 
     const [{ isDragging }, drag] = useDrag({
         type: "task",
@@ -47,20 +49,30 @@ const Task = ({ task, deleteTask }) => {
                     <div className={classes.progressWrapper}>
                         <div className={classes.progress}>
                             <div className={classes.progressBar}></div>
-                            <div className={classes.progressFilled} style={{ width: `${task.progress || 0}%` }}></div>
+                            <div className={`${classes.progressFilled} progressFilled`} style={{ "--final-width":`${task.progress || 0}%` }}></div>
+                        
                         </div>
                         <div> {task.progress || 0} %</div>
                     </div>
                 </div>
             </div>
-            {taskClicked &&
-                ReactDOM.createPortal(
-                    <Modal
-                        task={task}
-                        onClose={toggleModal}
-                    />, document.getElementById('overlay-root')
-                )
-            }
+            <CSSTransition nodeRef={nodeRef} in={taskClicked} timeout={200} classNames="modal">
+                <>
+                    {/* <div ref={nodeRef}> */}
+                    {taskClicked &&
+                        ReactDOM.createPortal(
+                            <Modal
+                                nodeRef={nodeRef}
+                                isClicked={taskClicked}
+                                task={task}
+                                onClose={toggleModal}
+                            />, document.getElementById('overlay-root')
+                        )
+
+                    }
+                </>
+                {/* </div> */}
+            </CSSTransition>
         </div>
     );
 };

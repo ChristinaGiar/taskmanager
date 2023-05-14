@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useRef } from 'react'
 import classes from './Modal.module.css';
 
 import AuthContext from '../store/auth-context';
 
-const Modal = ({task, onClose}) => {
+const Modal = ({task, onClose, nodeRef}) => {
 
   const crx = useContext(AuthContext);
 
@@ -46,7 +46,7 @@ const Modal = ({task, onClose}) => {
 
   return (
     <div className={classes.overlay}>
-      <div className={classes.modal}>
+      <div className={`${classes.modal} transition-modal`}  ref={nodeRef}>
         <i className={`fa-sharp fa-solid fa-x ${classes.modalExit}`} onClick={onCloseHandler}></i>
         <div className='centered'>
           <input type="text" className={`inputTitle ${classes.modalTitle}`} name="title" onChange={titleChangeHandler} value={inputValues.title} />

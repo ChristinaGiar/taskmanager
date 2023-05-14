@@ -1,7 +1,7 @@
 :root {
     --blue-color: rgba(0, 0, 255, 0.249);
     --white-color: white;
-    --text-color: #172b4d;
+    --dark-blue: #172b4d;
     --background-color: #f5eaea;
     --light-red: #f4cccc;
     --coral-red: #ee6a6a;
@@ -9,7 +9,7 @@
 }
 
 body {
-    color: var(--text-color);
+    color: var(--dark-blue);
     font-family: sans-serif;
     margin: 0;
     height: 100%;
@@ -114,4 +114,92 @@ button {
 
 [draggable="true"] {
     margin-bottom: 10px;
+}
+
+.transition-modal {
+    transition: opacity 400ms, transform 300ms;
+}
+
+.modal-enter {
+    opacity: 0;
+    transform: translate(-50%, -30%);
+    transition: opacity 300ms, transform 300ms;
+}
+
+.modal-enter-active.transition-modal {
+    opacity: 0;
+    transform: translate(-50%, -30%);
+}
+
+.modal-enter-done.transition-modal {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+}
+
+/* Color dropdown */
+.color-dropdown {
+    position: absolute;
+    right: 100px;
+    top: 12px;
+}
+
+.color-dropdown .dropdown-menu {
+    border: none;
+    transform: translate(-50%, 0) !important;
+    left: 50% !important;
+    top: 65px !important;
+}
+
+.title-dropdown {
+    padding: 0 10px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.color-dropdown .dropdown-toggle::after {
+    content: none;
+}
+
+.color-dropdown .btn-primary {
+    padding: 20px;
+    line-height: 17px;
+    border: none;
+    border-radius: 50px;
+    background-color: #fff;
+}
+
+.color-dropdown .btn-primary:hover {
+    background-color: rgb(254, 244, 244)
+}
+
+.color-dropdown .dropdown-toggle i {
+    width: 17px;
+    height: 17px;
+    vertical-align: middle;
+    color: var(--dark-blue);
+}
+
+.color-dropdown .dropdown-item {
+    border: 0;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    margin: 4px 10px;
+    border-radius: 33px;
+    width: calc(100% - 20px);
+}
+
+.color-dropdown .colorBox {
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
+}
+
+.color-box:hover {
+    opacity: .8;
+}
+
+.color-dropdown .active {
+    border: 3px solid black;
+    font-weight: 700;
 }

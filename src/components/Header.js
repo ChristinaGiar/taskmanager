@@ -1,9 +1,17 @@
-import React from "react";
-import classes from "./Header.module.css"
+import React, { useState } from "react";
+import BackgroundColor from "./BackgroundColor";
+import classes from "./Header.module.css";
 
 const Header = () => {
     return (
-        <h5 className={classes.pageHeader}>Task Manager</h5>
+        <header className={classes.headerWrapper}>
+            <div className="container">
+                <div className={classes.header}>
+                    <h5>Task Manager</h5>
+                    < BackgroundColor />
+                </div >
+            </div >
+        </header >
     );
 };
 

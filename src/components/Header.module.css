@@ -1,10 +1,18 @@
 
-.pageHeader {
+.headerWrapper {
     background-color: rgba(0,0,0,.3);
-    padding: 20px;
     color: white;
     font-size: 30px;
     flex: 1 100%;
     margin-top: 0;
-    text-align: center;
+    position: relative;
+    display: flex;
+}
+
+.header {
+    padding: 30px 20px; 
+}
+
+.header h5 {
+    margin: 0;
 }
