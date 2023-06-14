@@ -1,10 +1,8 @@
 import React from 'react';
 import { Form, redirect, json, useActionData, useLocation, Link } from 'react-router-dom';
-import { isLoggedIn } from '../utils/auth';
 
 export const authAction = async ({ params, request }) => {
   let searchParams = new URL(request.url).searchParams;
-  // let isLogin = searchParams.get('mode') === 'login';
   let mode = searchParams.get('mode') === 'login' ? 'login' : 'signup';
 
   let formData = await request.formData();
@@ -46,7 +44,6 @@ export const authAction = async ({ params, request }) => {
 
   if (response.status === 422 || response.status === 401) {
     return resData;
-    // return resData.serverErrors;
   }
   if (!response.ok) {
     throw json({ message: 'Could not authenticate user.' }, { status: 500 })
@@ -70,7 +67,6 @@ const AuthPage = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   let isLogin = searchParams.get('mode') === 'login';
-  // let mode = searchParams.get('mode') === 'login' ? 'login' : 'signup';
   return (
     <>
       <Form method="post">
@@ -80,8 +76,6 @@ const AuthPage = () => {
         <input id="email" name="email"></input>
         {data?.errors?.email && <div>{data.errors.email}</div>}
         {data?.serverErrors?.email && <div>{data.serverErrors.email}</div>}
-        {/* {errors[0]?.email && <div>{errors[0].email}</div>} */}
-        {/* {serverErrors?.email && <div>{serverErrors.email}</div>} */}
         <label htmlFor='password'>Password</label>
 
         <input id="password" name="password"></input>

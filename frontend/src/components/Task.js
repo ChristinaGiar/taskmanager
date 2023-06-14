@@ -58,7 +58,6 @@ const Task = ({ task, deleteTask }) => {
             </div>
             <CSSTransition nodeRef={nodeRef} in={taskClicked} timeout={200} classNames="modal">
                 <>
-                    {/* <div ref={nodeRef}> */}
                     {taskClicked &&
                         ReactDOM.createPortal(
                             <Modal
@@ -71,7 +70,6 @@ const Task = ({ task, deleteTask }) => {
 
                     }
                 </>
-                {/* </div> */}
             </CSSTransition>
         </div>
     );

@@ -29,22 +29,12 @@ async function getUser(data) {
         // throw new NotFoundError('No user found with this email.');
         return;
     }
-
-    // if(checkPassword(data.password, user.password)) {
-    //     return user;
-    // }
     const result = await checkPassword(data.password, user.password) ? user : null;
     return result;
-
 }
 
 async function checkPassword(enteredPass, DBpassword) {
     const validPass = await compare(enteredPass, DBpassword);
-    // if(!validPass) {
-    //     return false;
-    // }
-    // return true;
-
     return !!validPass;
 }
 
@@ -56,7 +46,6 @@ async function readData() {
 
 async function writeData(newData) {
     await fs.writeFile(path.join(pathRoot, '..', 'users.json'), JSON.stringify(newData));
-    console.log("DONE");
 }
 
 exports.addUser = addUser;

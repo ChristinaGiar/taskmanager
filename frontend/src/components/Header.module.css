@@ -20,9 +20,7 @@
 .greetingsTitle {
     display: inline-block;
     padding: 0.7rem 1.6rem;
-    /* background-color: white; */
     background-color: rgba(0,0,0,36%);
-    /* background-color: rgb(239, 213, 213); */
     color: white;
     border-radius: 38px;
     font-size: 16px;

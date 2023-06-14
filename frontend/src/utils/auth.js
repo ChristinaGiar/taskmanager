@@ -1,4 +1,4 @@
-import { redirect, useNavigate } from 'react-router-dom';
+import {redirect} from 'react-router-dom';
 
 export function getTokenDuration() {
   const storedExpirationDate = localStorage.getItem('token-duration');
@@ -25,28 +25,14 @@ export function getAuthToken() {
 }
 
 export function tokenLoader({ request }) {
-  console.log("request", request);
   const token = getAuthToken();
  
   if (token) {
     let searchParams = new URL(request.url).searchParams;
-    // let isLogin = searchParams.get('mode') === 'login';
     if (searchParams.get('mode')) {
       return redirect("/");
     }
   } 
-  else {
-    // const navigate = useNavigate();
-    // navigate('/auth');
-
-    // let history = useHistory();
-    // history.push("/home")
-
-    // let searchParams = new URL(request.url).searchParams;
-    // if (!searchParams.get('mode')) {
-    //   return redirect("/auth");
-    // }
-  }
   return token;
 }
 

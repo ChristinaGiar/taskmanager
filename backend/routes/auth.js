@@ -5,7 +5,6 @@ const { getUser, addUser } = require('../data/data');
 const { createJWToken } = require('../utils/token');
 
 router.post('/signup', async (req, res) => {
-    // console.log(res);
     const email = req.body.email;
     const password = req.body.password;
     const name = req.body.name;
@@ -30,7 +29,6 @@ router.post('/signup', async (req, res) => {
         const authToken = createJWToken(email);
         res.status(201)
             .json({ message: 'User created. ', user: newUser, token: authToken })
-        console.log(newUser);
     } catch (error) {
 
     }

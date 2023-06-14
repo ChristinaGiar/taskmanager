@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import BackgroundColor from "./BackgroundColor";
 import User from "./User";
 import classes from "./Header.module.css";
