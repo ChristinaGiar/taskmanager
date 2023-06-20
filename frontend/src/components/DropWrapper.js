@@ -7,7 +7,6 @@ const DropWrapper = ({ onDrop, children, status }) => {
     const [{ isOver }, drop] = useDrop({
         accept: "task",
         drop: (item, monitor) => {
-            console.log(item);
             onDrop(item, monitor, status);
         },
         collect: monitor => ({

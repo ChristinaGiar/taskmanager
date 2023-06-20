@@ -13,8 +13,17 @@
     padding: 30px 20px; 
 }
 
-.header h5 {
+.headerTitle {
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+}
+
+.headerText {
+    font-size: .5rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
     margin: 0;
+
 }
 
 .greetingsTitle {
@@ -27,6 +36,6 @@
     font-weight: 300;
     letter-spacing: 2px;
     position: absolute;
-    right: 171px;
-    top: 18px;
+    right: 230px;
+    top: 30px;
 }

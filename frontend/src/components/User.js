@@ -3,30 +3,29 @@ import { useRouteLoaderData, Link, Form } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
 
 
-const User = () => {
+const User = ({ color }) => {
     const token = useRouteLoaderData('root');
-
     return (
         <>
             <div className="user-dropdown">
                 <Dropdown>
                     <Dropdown.Toggle id="user-dropdown">
-                        <i className="fa-solid fa-droplet"></i>
+                        <i className="fa-solid fa-user" style={{ color: `${color.code}` }}></i>
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                        {!token && 
-                            <Link to="/auth?mode=login">
+                        {/* {!token && 
+                            <Link to="/auth?mode=login" className="user-link">
                                 Login
                             </Link>}
                         {!token && 
-                            <Link to="/auth?mode=signup">
+                            <Link to="/auth?mode=signup" className="user-link">
                                 Sign up
-                            </Link>}
-                        {token && token!=="EXPIRED" && <Dropdown.Item value={"login"} className={``}>
+                            </Link>} */}
+                        {token && token !== "EXPIRED" &&
                             <Form action="/logout" method="post">
-                                Logout
+                                <button className="user-link">Logout</button>
                             </Form>
-                        </Dropdown.Item>}
+                        }
                     </Dropdown.Menu>
                 </Dropdown>
             </div>

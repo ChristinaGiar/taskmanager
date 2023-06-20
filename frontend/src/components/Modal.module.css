@@ -10,7 +10,7 @@
 
 .modal {
     width: 60%;
-    height: 50%;
+    height: auto;
     position: absolute;
     background-color: white;
     padding: 40px 46px 70px;

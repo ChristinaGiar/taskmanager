@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from 'react'
+import React, { useContext, useState } from 'react'
 import classes from './Modal.module.css';
 
 import AuthContext from '../store/auth-context';

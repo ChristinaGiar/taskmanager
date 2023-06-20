@@ -6,6 +6,7 @@
     --light-red: #f4cccc;
     --coral-red: #ee6a6a;
     --light-grey: #80808051;
+    --grey: grey;
 }
 
 body {
@@ -136,18 +137,27 @@ button {
     transform: translate(-50%, -50%);
 }
 
-/* Color dropdown */
-.color-dropdown {
+/* Color dropdown, User dropdown */
+.color-dropdown, .user-dropdown {
     position: absolute;
-    right: 100px;
-    top: 12px;
+    right: 165px;
+    top: 28px;
 }
 
-.color-dropdown .dropdown-menu {
+.user-dropdown {
+    right: 100px;
+}
+
+.color-dropdown .dropdown-menu,
+.user-dropdown .dropdown-menu {
     border: none;
     transform: translate(-50%, 0) !important;
     left: 50% !important;
     top: 65px !important;
+}
+
+.user-dropdown .dropdown-menu {
+    padding: 10px;
 }
 
 .title-dropdown {
@@ -156,30 +166,35 @@ button {
     margin-bottom: 10px;
 }
 
-.color-dropdown .dropdown-toggle::after {
+.color-dropdown .dropdown-toggle::after,
+.user-dropdown .dropdown-toggle::after {
     content: none;
 }
 
-.color-dropdown .btn-primary {
-    padding: 20px;
+.color-dropdown .btn-primary,
+.user-dropdown .btn-primary {
+    padding: 15px;
     line-height: 17px;
     border: none;
     border-radius: 50px;
     background-color: #fff;
 }
 
-.color-dropdown .btn-primary:hover {
+.color-dropdown .btn-primary:hover,
+.user-dropdown .btn-primary:hover {
     background-color: rgb(254, 244, 244)
 }
 
-.color-dropdown .dropdown-toggle i {
+.color-dropdown .dropdown-toggle i,
+.user-dropdown .dropdown-toggle i {
     width: 17px;
     height: 17px;
     vertical-align: middle;
     color: var(--dark-blue);
 }
 
-.color-dropdown .dropdown-item {
+.color-dropdown .dropdown-item,
+.user-dropdown .dropdown-item {
     border: 0;
     color: white;
     padding: 10px;
@@ -190,9 +205,13 @@ button {
 }
 
 .color-dropdown .colorBox {
-    width: 40px;
-    height: 40px;
     border-radius: 2px;
+}
+
+.user-dropdown .user-link {
+    width: 100%;
+    text-align: center;
+    background-color: transparent;
 }
 
 .color-box:hover {

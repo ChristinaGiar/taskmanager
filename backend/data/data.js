@@ -21,12 +21,10 @@ async function addUser(data) {
 async function getUser(data) {
     const storedUsers = await readData();
     if(!storedUsers.users || storedUsers.users.length === 0) {
-        // throw new NotFoundError('No users found.');
         return null;
     }
     const user = storedUsers.users.find(user => user.email === data.email);
     if(!user) {
-        // throw new NotFoundError('No user found with this email.');
         return;
     }
     const result = await checkPassword(data.password, user.password) ? user : null;
