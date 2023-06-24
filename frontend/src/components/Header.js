@@ -14,7 +14,7 @@ const Header = ({ name }) => {
         <header className={classes.headerWrapper}>
             <div className="container">
                 <div className={classes.header}>
-                    <h1 className={classes.headerTitle}>task.manager.org</h1>
+                    <h1 className={classes.headerTitle}>my.task.manager</h1>
                     <p className={classes.headerText}>All you need.</p>
                     {name && <div className={classes.greetingsTitle}>Hi, {name}!</div>}
                     <BackgroundColor getActiveColor={activeColorHandler} colors={colors}/>

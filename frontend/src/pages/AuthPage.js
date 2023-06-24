@@ -33,7 +33,7 @@ export const authAction = async ({ params, request }) => {
   }
 
   let response;
-  response = await fetch('http://localhost:8080/' + mode, {
+  response = await fetch('https://taskmanagerback.onrender.com/' + mode, {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
@@ -89,7 +89,7 @@ const AuthPage = () => {
 
       <div className={`${classes.loginWrapper} ${isLogin ? classes.slideInLogin : ""}`}>
         <div className={`${classes.loginCol} ${classes.loginColLeft}`}>
-          <h3 className={classes.logoText}>task.manager.org</h3>
+          <h3 className={classes.logoText}>my.task.manager</h3>
           <p className={classes.logoSubtext}>Your personal task manager.</p>
 
           {isLogin && isExpired && <div className={classes.loginTitle}>Welcome back!</div>}
