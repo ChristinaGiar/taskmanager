@@ -33,15 +33,7 @@ const router = createBrowserRouter([
 const App = () => {
   const path = window.location.pathname
   console.log(path)
-  return (
-    <>
-      {path === '/zohoverify/verifyforzoho.html' ? (
-        '64931922'
-      ) : (
-        <RouterProvider router={router} />
-      )}
-    </>
-  )
+  return <RouterProvider router={router} />
 }
 
 export default App
