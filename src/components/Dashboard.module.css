@@ -1,26 +1,28 @@
 .box {
-    overflow-x: auto;
-    overflow: -moz-scrollbars-none;
-    -ms-overflow-style: none;
-    flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+  flex-wrap: nowrap;
 }
 
-.box::-webkit-scrollbar { width: 0 !important }
+.box::-webkit-scrollbar {
+  width: 0 !important;
+}
 
 .columnWrapper {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    padding: 20px;
-    background-color: rgba(255,255,255,0.4);
-    border-radius: 5px;
-    height: 100%;
-    min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  height: 100%;
+  min-height: 500px;
 }
 
 .columnHeader {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    margin-top: 0;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-top: 0;
 }

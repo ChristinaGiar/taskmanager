@@ -43,5 +43,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "/node_modules/(?!react-dnd|core-dnd|@react-dnd|dnd-core|react-dnd-html5-backend)"
+    ]
+  },
+  "devDependencies": {}
 }

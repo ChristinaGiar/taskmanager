@@ -1,224 +1,223 @@
 :root {
-    --blue-color: rgba(0, 0, 255, 0.249);
-    --white-color: white;
-    --dark-blue: #172b4d;
-    --background-color: #f5eaea;
-    --light-red: #f4cccc;
-    --coral-red: #ee6a6a;
-    --light-grey: #80808051;
-    --grey: grey;
+  --blue-color: rgba(0, 0, 255, 0.249);
+  --white-color: white;
+  --dark-blue: #172b4d;
+  --background-color: #f5eaea;
+  --light-red: #f4cccc;
+  --coral-red: #ee6a6a;
+  --light-grey: #80808051;
+  --grey: grey;
+  --teal: #028090;
 }
 
 body {
-    color: var(--dark-blue);
-    font-family: sans-serif;
-    margin: 0;
-    height: 100%;
-    background-color: #bebeff15;
-    background-color: #028090;
+  color: var(--dark-blue);
+  font-family: sans-serif;
+  margin: 0;
+  height: 100%;
+  background-color: #028090;
+  transition: background-color 0.3s ease-in-out;
 }
 
 a {
-    color: unset;
-    text-decoration: unset;
-    cursor: pointer;
+  color: unset;
+  text-decoration: unset;
+  cursor: pointer;
 }
 
 p {
-    overflow-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 input,
 textarea {
-    display: block;
-    padding: 5px 0;
-    margin-bottom: 15px;
-    border: none;
-    border-radius: 2px;
+  display: block;
+  padding: 5px 0;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 2px;
 }
 
 input:focus-visible,
 textarea:focus-visible {
-    padding: 5px 10px;
-    background-color: rgba(244, 204, 204, 0.4);
-    outline: 0;
+  padding: 5px 10px;
+  background-color: rgba(244, 204, 204, 0.4);
+  outline: 0;
 }
 
 label {
-    margin-bottom: 10px;
-    font-weight: 600;
+  margin-bottom: 10px;
+  font-weight: 600;
 }
 
 .inputTitle {
-    border: none;
-    display: block;
-    margin: 0 auto;
-    text-align: center;
-    margin-bottom: 25px;
+  border: none;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 25px;
 }
 
 button {
-    border: none;
-    border-radius: 2px;
+  border: none;
+  border-radius: 2px;
 }
 
-
-
 .scroll-buttons {
-    display: flex;
-    gap: 20px;
-    position: absolute;
-    width: auto;
-    right: 0;
-    bottom: 0;
-    transform: translateY(100%);
+  display: flex;
+  gap: 20px;
+  position: absolute;
+  width: auto;
+  right: 0;
+  bottom: 0;
+  transform: translateY(100%);
 }
 
 .left-button,
 .right-button {
-    height: 50px;
-    width: 50px;
-    border: 1px solid var(--white-color);
-    border-radius: 40px;
-    background-color: transparent;
+  height: 50px;
+  width: 50px;
+  border: 1px solid var(--white-color);
+  border-radius: 40px;
+  background-color: transparent;
 }
 
 .left-button:hover,
 .right-button:hover {
-    border-width: 2px;
+  border-width: 2px;
 }
 
 .left-button i,
 .right-button i {
-    color: var(--white-color);
+  color: var(--white-color);
 }
 
 .add-column {
-    height: fit-content;
-    background: #ffffffce;
-    padding: 12px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-
+  height: fit-content;
+  background: #ffffffce;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .add-task {
-    position: absolute;
-    right: 16px;
-    top: 16px;
-    border-radius: 3px;
-    line-height: 18px;
-    padding: 2px 6px;
-    background-color: var(--white-color);
-    cursor: pointer;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  border-radius: 3px;
+  line-height: 18px;
+  padding: 2px 6px;
+  background-color: var(--white-color);
+  cursor: pointer;
 }
 
-[draggable="true"] {
-    margin-bottom: 10px;
+[draggable='true'] {
+  margin-bottom: 10px;
 }
 
 .transition-modal {
-    transition: opacity 400ms, transform 300ms;
+  transition: opacity 400ms, transform 300ms;
 }
 
 .modal-enter {
-    opacity: 0;
-    transform: translate(-50%, -30%);
-    transition: opacity 300ms, transform 300ms;
+  opacity: 0;
+  transform: translate(-50%, -30%);
+  transition: opacity 300ms, transform 300ms;
 }
 
 .modal-enter-active.transition-modal {
-    opacity: 0;
-    transform: translate(-50%, -30%);
+  opacity: 0;
+  transform: translate(-50%, -30%);
 }
 
 .modal-enter-done.transition-modal {
-    opacity: 1;
-    transform: translate(-50%, -50%);
+  opacity: 1;
+  transform: translate(-50%, -50%);
 }
 
 /* Color dropdown, User dropdown */
-.color-dropdown, .user-dropdown {
-    position: absolute;
-    right: 165px;
-    top: 28px;
+.color-dropdown,
+.user-dropdown {
+  position: absolute;
+  right: 165px;
+  top: 28px;
 }
 
 .user-dropdown {
-    right: 100px;
+  right: 100px;
 }
 
 .color-dropdown .dropdown-menu,
 .user-dropdown .dropdown-menu {
-    border: none;
-    transform: translate(-50%, 0) !important;
-    left: 50% !important;
-    top: 65px !important;
+  border: none;
+  transform: translate(-50%, 0) !important;
+  left: 50% !important;
+  top: 65px !important;
 }
 
 .user-dropdown .dropdown-menu {
-    padding: 10px;
+  padding: 10px;
 }
 
 .title-dropdown {
-    padding: 0 10px;
-    text-align: center;
-    margin-bottom: 10px;
+  padding: 0 10px;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .color-dropdown .dropdown-toggle::after,
 .user-dropdown .dropdown-toggle::after {
-    content: none;
+  content: none;
 }
 
 .color-dropdown .btn-primary,
 .user-dropdown .btn-primary {
-    padding: 15px;
-    line-height: 17px;
-    border: none;
-    border-radius: 50px;
-    background-color: #fff;
+  padding: 15px;
+  line-height: 17px;
+  border: none;
+  border-radius: 50px;
+  background-color: #fff;
 }
 
 .color-dropdown .btn-primary:hover,
 .user-dropdown .btn-primary:hover {
-    background-color: rgb(254, 244, 244)
+  background-color: rgb(254, 244, 244);
 }
 
 .color-dropdown .dropdown-toggle i,
 .user-dropdown .dropdown-toggle i {
-    width: 17px;
-    height: 17px;
-    vertical-align: middle;
-    color: var(--dark-blue);
+  width: 17px;
+  height: 17px;
+  vertical-align: middle;
+  color: var(--dark-blue);
 }
 
 .color-dropdown .dropdown-item,
 .user-dropdown .dropdown-item {
-    border: 0;
-    color: white;
-    padding: 10px;
-    text-align: center;
-    margin: 4px 10px;
-    border-radius: 33px;
-    width: calc(100% - 20px);
+  border: 0;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  margin: 4px 10px;
+  border-radius: 33px;
+  width: calc(100% - 20px);
 }
 
 .color-dropdown .colorBox {
-    border-radius: 2px;
+  border-radius: 2px;
 }
 
 .user-dropdown .user-link {
-    width: 100%;
-    text-align: center;
-    background-color: transparent;
+  width: 100%;
+  text-align: center;
+  background-color: transparent;
 }
 
 .color-box:hover {
-    opacity: .8;
+  opacity: 0.8;
 }
 
 .color-dropdown .active {
-    border: 3px solid black;
-    font-weight: 700;
+  border: 3px solid black;
+  font-weight: 700;
 }

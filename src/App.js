@@ -6,6 +6,7 @@ import AuthPage, { authAction } from './pages/AuthPage'
 import ErrorPage from './pages/ErrorPage'
 import { tokenLoader } from './utils/auth'
 import { logoutAction } from './components/Logout'
+import { VerifyPage } from './pages/VerifyPage'
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: 'logout',
         action: logoutAction,
+      },
+      {
+        path: 'verify',
+        element: <VerifyPage />,
       },
     ],
   },
