@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Form,
   redirect,
   json,
   useActionData,
   useLocation,
-  Link,
   useRouteLoaderData,
 } from 'react-router-dom'
 import classes from './AuthPage.module.css'
@@ -13,6 +11,7 @@ import { smtpexpressClient } from '../utils/smtp'
 import { InfoBanner } from '../components/InfoBanner'
 import { VerificationModal } from '../components/VerificationModal'
 import { loginImages } from '../data'
+import { AuthForm } from '../components/AuthForm'
 
 const sendEmail = async (userName, emailURL) => {
   try {
@@ -172,80 +171,7 @@ const AuthPage = () => {
                   ? 'Enter your credentials to access your account.'
                   : "Let's get started."}
               </div>
-              <Form
-                method='post'
-                className={classes.loginForm}
-                onSubmit={resetForm}
-              >
-                <div className={classes.loginInputWrapper}>
-                  <label className={classes.loginLabel} htmlFor='email'>
-                    Email
-                  </label>
-                  <input
-                    className={classes.loginInput}
-                    type='text'
-                    id='email'
-                    name='email'
-                    placeholder='alex@example.com'
-                  ></input>
-                </div>
-
-                {data?.errorEmail && (
-                  <div className={classes.errorMsg}>{data.errorEmail}</div>
-                )}
-                {data?.serverErrors?.email && (
-                  <div>{data.serverErrors.email}</div>
-                )}
-
-                <div className={classes.loginInputWrapper}>
-                  <label className={classes.loginLabel} htmlFor='password'>
-                    Password
-                  </label>
-                  <input
-                    className={classes.loginInput}
-                    type='password'
-                    id='password'
-                    name='password'
-                  ></input>
-                </div>
-
-                {data?.errorPassword && (
-                  <div className={classes.errorMsg}>{data.errorPassword}</div>
-                )}
-                {data?.serverErrors?.password && (
-                  <div className={classes.errorMsg}>
-                    {data.serverErrors.password}
-                  </div>
-                )}
-                {!isLogin && (
-                  <div className={classes.loginInputWrapper}>
-                    <label className={classes.loginLabel} htmlFor='name'>
-                      Name
-                    </label>
-                    <input
-                      className={classes.loginInput}
-                      id='name'
-                      name='name'
-                      placeholder='Alex Parmen'
-                    ></input>
-                  </div>
-                )}
-                <div className={classes.loginButtonWrapper}>
-                  <button className={classes.button}>
-                    {isLogin ? 'Login' : 'Sign up'}
-                  </button>
-                  <div className={classes.subButton}>
-                    {isLogin ? "Don't have an account?" : 'Have an account?'}
-                  </div>
-
-                  <Link
-                    className={classes.subLabel}
-                    to={`?mode=${isLogin ? 'signup' : 'login'}`}
-                  >
-                    {isLogin ? 'Sign up' : 'Login'}
-                  </Link>
-                </div>
-              </Form>
+              <AuthForm resetForm={resetForm} data={data} isLogin={isLogin} />
             </>
           )}
         </div>

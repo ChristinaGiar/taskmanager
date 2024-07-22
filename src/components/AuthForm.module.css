@@ -1,0 +1,67 @@
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  min-width: 215px;
+  margin: auto;
+}
+
+.loginInputWrapper {
+  margin-bottom: 0;
+}
+
+.loginInput {
+  border: 1px solid var(--dark-blue);
+  border-radius: 4px;
+  padding: 8px;
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+.passwordIcon {
+  font-size: 0.85rem;
+  position: absolute;
+  color: rgb(0, 0, 0, 0.7);
+  right: 0.7rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.passwordInputWrapper {
+  position: relative;
+}
+
+.passwordInputWrapper input {
+  padding: 8px 31px 8px 8px;
+}
+
+.errorMsg {
+  color: var(--coral-red);
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.button {
+  width: 100%;
+  padding: 9px;
+  border-radius: 5px;
+  background: rgb(0, 0, 255);
+  color: white;
+  margin: 1rem 0 2rem;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.button:hover {
+  background: rgba(0, 0, 255, 0.8);
+}
+
+.subButton {
+  color: var(--grey);
+  font-size: 0.9rem;
+}
+
+.subLabel {
+  color: blue;
+  font-size: 0.9rem;
+}
