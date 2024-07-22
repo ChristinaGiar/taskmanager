@@ -10,12 +10,15 @@ import {
 } from 'react-router-dom'
 import classes from './AuthPage.module.css'
 import { smtpexpressClient } from '../utils/smtp'
+import { InfoBanner } from '../components/InfoBanner'
+import { VerificationModal } from '../components/VerificationModal'
+import { loginImages } from '../data'
 
 const sendEmail = async (userName, emailURL) => {
   try {
     await smtpexpressClient.sendApi.sendMail({
       subject: 'Welcome to My Task Manager: Email verification',
-      message: `<h2 style="font-size: .9rem;">WELCOME ${userName}🎉 </h2><br><p style="font-size: .9rem;">Before you go out and play on My Task Manager, please verify your email address. To do this you just have to click on the button bellow.</p><p style="font-size: .9rem;">If you did not create a My Task Manager account using this address, please contact us at example@mytaskmanager.com.</p><a href="${emailURL}" target="_blank" style="background:black;color:white;text-decoration: none;display: block;width: fit-content;border-radius: .5rem;margin: 1rem auto;padding: .5rem 1.2rem;font-size: .9rem;">Verify your account</a>`,
+      message: `<h2 style="font-size: .9rem;">Welcome ${userName} 🎉 </h2><p style="font-size: .9rem;">Before you go out and play on My Task Manager, please verify your email address. To do this you just have to click on the button bellow.</p><p style="font-size: .9rem;">If you did not create a My Task Manager account using this address, please contact us at example@mytaskmanager.com.</p><a href="${emailURL}" target="_blank" style="background:black;color:white;text-decoration: none;display: block;width: fit-content;border-radius: .5rem;margin: 2rem auto;padding: .5rem 1.2rem;font-size: .9rem;">Verify your account</a><hr style="margin: 2rem 0 .5rem;"><div style="text-align: center;font-size: 12px;">© 2024 My Task Manager</div>`,
       sender: {
         name: 'My Task Manager',
         email: 'sm0pid-3E2AdEaB2cI_Wd485D6nBlMnK@projects.smtpexpress.com',
@@ -83,7 +86,7 @@ export const authAction = async ({ params, request }) => {
   if (mode === 'signup') {
     sendEmail(data.name, resData.emailURL)
 
-    return { email: data.email, verificationScreenShown: true }
+    return { email: data.email, verificationModalShown: true }
   } else {
     const token = resData.token
     console.log('authtoken', token)
@@ -100,17 +103,10 @@ export const authAction = async ({ params, request }) => {
       verificationPending: true,
       verificationError:
         'Verification pending! You have to verify your account via the link we sent to your email!',
-      verificationScreenShown: false,
+      verificationModalShown: false,
     }
   }
 }
-
-const loginImages = [
-  'https://images.unsplash.com/photo-1656273090626-f6e65b6f9f80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=1800&q=60',
-  'https://images.unsplash.com/photo-1635377090186-036bca445c6b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80',
-  'https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80',
-  'https://images.unsplash.com/photo-1633907284646-7abf4a195875?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2064&q=80',
-]
 
 const AuthPage = () => {
   let data = useActionData()
@@ -126,6 +122,15 @@ const AuthPage = () => {
   }
 
   const [loginImg, setLoginImg] = useState(loginImages[0])
+  const [isClicked, setIsClicked] = useState(false)
+
+  const handleClick = () => {
+    setIsClicked(true)
+  }
+
+  const resetForm = () => {
+    setIsClicked(false)
+  }
 
   useEffect(() => {
     setLoginImg(loginImages[randomNumber(0, 3)])
@@ -142,7 +147,7 @@ const AuthPage = () => {
         }`}
       >
         <div
-          className={`${!data?.verificationScreenShown && classes.loginCol} ${
+          className={`${!data?.verificationModalShown && classes.loginCol} ${
             classes.loginColLeft
           }`}
         >
@@ -150,23 +155,8 @@ const AuthPage = () => {
           <p className={classes.logoSubtext}>Your personal task manager.</p>
 
           {console.log(data)}
-          {data?.verificationScreenShown ? (
-            <div>
-              {/* Component */}
-              <div className={classes.verificationImage}>
-                <i
-                  className={`${classes.icon} fa-solid fa-paper-plane`}
-                  style={{ color: 'white' }}
-                ></i>
-              </div>
-              <h3 className={classes.verificationTitle}> Verify your email</h3>
-              <p className={classes.verificationText}>
-                We have sent an email to{' '}
-                <span className={classes.verificationEmail}>{data.email}</span>{' '}
-                to verify your address and activate your account. If not found,
-                please check also the spam folder.
-              </p>
-            </div>
+          {data?.verificationModalShown ? (
+            <VerificationModal email={data.email} />
           ) : (
             <>
               {!isLogin && <div className={classes.loginTitle}>Sign Up</div>}
@@ -182,7 +172,11 @@ const AuthPage = () => {
                   ? 'Enter your credentials to access your account.'
                   : "Let's get started."}
               </div>
-              <Form method='post' className={classes.loginForm}>
+              <Form
+                method='post'
+                className={classes.loginForm}
+                onSubmit={resetForm}
+              >
                 <div className={classes.loginInputWrapper}>
                   <label className={classes.loginLabel} htmlFor='email'>
                     Email
@@ -240,12 +234,12 @@ const AuthPage = () => {
                   <button className={classes.button}>
                     {isLogin ? 'Login' : 'Sign up'}
                   </button>
-                  <div className={classes.subbutton}>
+                  <div className={classes.subButton}>
                     {isLogin ? "Don't have an account?" : 'Have an account?'}
                   </div>
 
                   <Link
-                    className={classes.sublabel}
+                    className={classes.subLabel}
                     to={`?mode=${isLogin ? 'signup' : 'login'}`}
                   >
                     {isLogin ? 'Sign up' : 'Login'}
@@ -255,24 +249,23 @@ const AuthPage = () => {
             </>
           )}
         </div>
-        {!data?.verificationScreenShown && (
+        {!data?.verificationModalShown && (
           <div className={`${classes.loginCol} ${classes.loginColRight}`}>
             <img className={classes.loginImg} src={loginImg} alt='login' />
           </div>
         )}
       </div>
-      {/* Component */}
-      {data?.verificationPending && (
-        <div className={`${classes.note} ${classes.errorOrange}`}>
-          <p className={classes.noteText}>{data.verificationError}</p>{' '}
-          <i className={`${classes.noteIcon} fa-regular fa-xmark`}></i>
-        </div>
+
+      {data?.verificationPending && !isClicked && (
+        <InfoBanner
+          text={data.verificationError}
+          isWarning
+          clickFunc={handleClick}
+        />
       )}
-      {data?.serverError?.noMatch && (
-        <div className={`${classes.note} ${classes.errorRed}`}>
-          <p className={classes.noteText}>{data?.serverError?.noMatch}</p>
-          <i className={`${classes.noteIcon} fa-regular fa-xmark`}></i>
-        </div>
+
+      {data?.serverError?.noMatch && !isClicked && (
+        <InfoBanner text={data?.serverError?.noMatch} clickFunc={handleClick} />
       )}
     </>
   )

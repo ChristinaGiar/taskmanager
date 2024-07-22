@@ -1,0 +1,39 @@
+.whiteBox {
+  background-color: white;
+  padding: 2.3rem 2rem 2rem;
+  border-radius: 12px;
+  margin: 3rem 10%;
+  text-align: center;
+}
+
+.whiteBox h5 {
+  font-size: 2.7rem;
+  font-weight: 600;
+}
+
+.whiteBox p {
+  font-size: 1rem;
+}
+
+.whiteBox a {
+  background: black;
+  color: white;
+  text-decoration: none;
+  display: block;
+  width: fit-content;
+  border-radius: 0.5rem;
+  margin: 2rem auto 1rem;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.whiteBox a:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+@media (max-width: 768px) {
+  .whiteBox h5 {
+    font-size: 1.5rem;
+  }
+}

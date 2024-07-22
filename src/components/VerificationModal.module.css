@@ -1,0 +1,33 @@
+.text {
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.image {
+  margin: 5rem 0 2rem;
+  text-align: center;
+}
+
+.icon {
+  color: white;
+  font-size: 3rem;
+  padding: 3rem;
+  background: rgba(2, 128, 144, 0.8);
+  border-radius: 50%;
+}
+
+.title {
+  text-align: center;
+}
+
+.email {
+  color: #028090;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .image {
+    margin: 2.5rem 0 1.5rem;
+  }
+}

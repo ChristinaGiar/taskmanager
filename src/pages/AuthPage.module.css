@@ -36,6 +36,7 @@
     left: 0;
   }
 }
+
 @keyframes slideInLogin {
   from {
     left: 62rem;
@@ -50,7 +51,7 @@
 }
 
 .loginColLeft {
-  padding: 3rem;
+  padding: 2rem 3rem;
 }
 
 .logoText {
@@ -89,11 +90,11 @@
 .loginSubtitle {
   font-size: 0.8rem;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .loginInputWrapper {
-  margin-bottom: 15px;
+  margin-bottom: 0;
 }
 
 .loginInput {
@@ -114,86 +115,24 @@
   width: 100%;
   padding: 9px;
   border-radius: 5px;
-  background: blue;
+  background: rgb(0, 0, 255);
   color: white;
-  margin-bottom: 2rem;
+  margin: 1rem 0 2rem;
+  transition: background-color 0.3s ease-in-out;
 }
 
-.subbutton {
+.button:hover {
+  background: rgba(0, 0, 255, 0.8);
+}
+
+.subButton {
   color: var(--grey);
   font-size: 0.9rem;
 }
 
-.sublabel {
+.subLabel {
   color: blue;
   font-size: 0.9rem;
-}
-
-.verificationIcon {
-}
-
-.verificationText {
-  text-align: center;
-  width: 80%;
-  margin: 0 auto;
-}
-
-.verificationImage {
-  margin: 5rem 0 2rem;
-  text-align: center;
-}
-
-.icon {
-  color: white;
-  font-size: 3rem;
-  padding: 3rem;
-  background: rgba(2, 128, 144, 0.8);
-  border-radius: 50%;
-}
-
-.verificationTitle {
-  text-align: center;
-}
-
-.verificationEmail {
-  color: #028090;
-  font-weight: 600;
-}
-
-.note {
-  position: absolute;
-  bottom: 8rem;
-  width: 40%;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 0.8rem 1rem;
-  border-radius: 6px;
-  font-size: 14px;
-  display: flex;
-  gap: 1rem;
-}
-
-.noteIcon {
-  border-radius: 50%;
-  font-size: 1rem;
-  color: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  padding: 0.207rem 0.33rem 0.2rem;
-  align-self: center;
-  cursor: pointer;
-}
-
-.noteIcon:hover {
-  color: rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(0, 0, 0, 0.5);
-}
-
-.errorOrange {
-  background: rgba(251, 218, 151, 0.9);
-}
-
-.errorRed {
-  background: rgba(237, 88, 108, 0.8);
 }
 
 @media (max-width: 768px) {
@@ -206,20 +145,21 @@
   }
   .loginColLeft {
     order: 2;
-    padding: 2rem 1rem 1rem;
+    padding: 1.4rem 1rem 1rem;
   }
   .loginColRight {
     order: 1;
   }
+
+  .loginTitle {
+    margin-top: 1.8rem;
+    font-size: 1.4rem;
+  }
   .loginImg {
-    height: 10rem;
+    height: 6rem;
   }
 
   .verificationImage {
     margin: 2.5rem 0 1.5rem;
-  }
-  .icon {
-    font-size: 2.1rem;
-    padding: 2rem;
   }
 }
