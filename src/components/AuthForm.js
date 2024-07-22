@@ -4,7 +4,11 @@ import classes from './AuthForm.module.css'
 export const AuthForm = ({ resetForm, data, isLogin }) => {
   const [passwordShown, setPasswordShown] = useState(false)
   return (
-    <Form method='post' className={classes.loginForm} onSubmit={resetForm}>
+    <Form
+      method='post'
+      className={classes.loginForm}
+      onSubmit={() => resetForm()}
+    >
       <div className={classes.loginInputWrapper}>
         <label className={classes.loginLabel} htmlFor='email'>
           Email

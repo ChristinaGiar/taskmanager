@@ -88,7 +88,6 @@ export const authAction = async ({ params, request }) => {
     return { email: data.email, verificationModalShown: true }
   } else {
     const token = resData.token
-    console.log('authtoken', token)
     localStorage.setItem('token', token)
     const expiration = new Date().getTime() + 60 * 60 * 1000
     localStorage.setItem('token-expiration', new Date(expiration).toISOString())

@@ -26,7 +26,6 @@ export function getAuthToken() {
 
 export async function tokenLoader({ request }) {
   const token = getAuthToken()
-  console.log('TOKEN LOADER', request)
 
   if (token) {
     // let searchParams = new URL(request.url).searchParams;
@@ -56,7 +55,6 @@ export function isLoggedIn() {
   if (!/^true$/i.test(isVerified)) {
     return false
   }
-  console.log(token, isVerified)
 
   const tokenDuration = getTokenDuration()
 

@@ -36,8 +36,6 @@ const router = createBrowserRouter([
 ])
 
 const App = () => {
-  const path = window.location.pathname
-  console.log(path)
   return <RouterProvider router={router} />
 }
 
