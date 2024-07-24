@@ -1,4 +1,4 @@
-const data = [
+export const data = [
   {
     id: 1,
     icon: '🤩',
@@ -33,25 +33,23 @@ const data = [
   },
 ]
 
-const statuses = [
+export const statuses = [
   {
-    statusId: 1,
+    id: 1,
     status: 'To Do',
     icon: '🤩',
   },
   {
-    statusId: 2,
+    id: 2,
     status: 'In progress',
     icon: '🔥',
   },
   {
-    statusId: 3,
+    id: 3,
     status: 'In review',
     icon: '🔍️',
   },
 ]
-
-export { data, statuses }
 
 export const loginImages = [
   'https://images.pexels.com/photos/1561020/pexels-photo-1561020.jpeg?auto=compress&cs=tinysrgb&w=2080&q=80',
