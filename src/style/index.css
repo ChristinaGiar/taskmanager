@@ -38,13 +38,15 @@ textarea {
   padding: 5px 0;
   margin-bottom: 15px;
   border: none;
-  border-radius: 2px;
+  border-radius: 4px;
+  padding: 5px 8px;
+  border: 1px solid var(--light-red);
 }
 
 input:focus-visible,
 textarea:focus-visible {
-  padding: 5px 10px;
-  background-color: rgba(244, 204, 204, 0.4);
+  background-color: rgba(244, 204, 204, 0.3);
+
   outline: 0;
 }
 
@@ -63,7 +65,7 @@ label {
 
 button {
   border: none;
-  border-radius: 2px;
+  border-radius: 5px;
 }
 
 .scroll-buttons {
@@ -111,6 +113,7 @@ button {
   line-height: 18px;
   padding: 2px 6px;
   background-color: var(--white-color);
+  color: rgba(0, 0, 0, 0.6);
   cursor: pointer;
 }
 
@@ -143,7 +146,7 @@ button {
 .user-dropdown {
   position: absolute;
   right: 165px;
-  top: 28px;
+  top: 20px;
 }
 
 .user-dropdown {
@@ -157,13 +160,13 @@ button {
   left: 50% !important;
   top: 65px !important;
 }
-
+.color-dropdown .dropdown-menu,
 .user-dropdown .dropdown-menu {
   padding: 10px;
 }
 
 .title-dropdown {
-  padding: 0 10px;
+  /* padding: 0 10px; */
   text-align: center;
   margin-bottom: 10px;
 }
@@ -195,7 +198,7 @@ button {
   color: var(--dark-blue);
 }
 
-.color-dropdown .dropdown-item,
+/* .color-dropdown .dropdown-item, */
 .user-dropdown .dropdown-item {
   border: 0;
   color: white;
@@ -210,10 +213,23 @@ button {
   border-radius: 2px;
 }
 
+.color-dropdown-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
 .user-dropdown .user-link {
   width: 100%;
   text-align: center;
   background-color: transparent;
+}
+
+.color-box {
+  width: 1.8rem;
+  height: 1.8rem;
+  padding: 0;
+  border-radius: 24px;
 }
 
 .color-box:hover {
@@ -221,6 +237,12 @@ button {
 }
 
 .color-dropdown .active {
-  border: 3px solid black;
+  border: 2px solid black;
   font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .col-6 {
+    padding: 0 0.5rem;
+  }
 }

@@ -1,41 +1,45 @@
-
 .headerWrapper {
-    background-color: rgba(0,0,0,.3);
-    color: white;
-    font-size: 30px;
-    flex: 1 100%;
-    margin-top: 0;
-    position: relative;
-    display: flex;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  font-size: 30px;
+  flex: 1 100%;
+  margin: 0 0 1.5rem;
+  position: relative;
+  display: flex;
 }
 
 .header {
-    padding: 30px 20px; 
+  padding: 20px;
 }
 
 .headerTitle {
-    font-size: 1.6rem;
-    margin-bottom: 5px;
+  font-size: 1.6rem;
+  margin-bottom: 5px;
 }
 
 .headerText {
-    font-size: .5rem;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin: 0;
-
+  font-size: 0.5rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin: 0;
 }
 
 .greetingsTitle {
-    display: inline-block;
-    padding: 0.7rem 1.6rem;
-    background-color: rgba(0,0,0,36%);
-    color: white;
-    border-radius: 38px;
-    font-size: 16px;
-    font-weight: 300;
-    letter-spacing: 2px;
-    position: absolute;
-    right: 230px;
-    top: 30px;
+  display: inline-block;
+  padding: 0.7rem 1.6rem;
+  background-color: rgba(0, 0, 0, 36%);
+  color: white;
+  border-radius: 38px;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  position: absolute;
+  right: 230px;
+  top: 20px;
+}
+
+@media (max-width: 768px) {
+  .headerWrapper {
+    margin-bottom: 1rem;
+  }
 }

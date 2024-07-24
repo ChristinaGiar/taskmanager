@@ -1,72 +1,163 @@
 .overlay {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    z-index: 100;
-    top: 0;
-    left: 0;
-    background-color: rgba(0,0,0,.3);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .modal {
-    width: 60%;
-    height: auto;
-    position: absolute;
-    background-color: white;
-    padding: 40px 46px 70px;
-    border-radius: 14px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  width: 60%;
+  height: auto;
+  position: absolute;
+  background-color: white;
+  padding: 40px 46px 70px;
+  border-radius: 14px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .modalExit {
-    position: absolute;
-    right: 25px;
-    top: 25px;
-    cursor: pointer;
-    padding: 5px;
+  position: absolute;
+  right: 25px;
+  top: 25px;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px;
 }
 
 .modalTitle {
-    text-align: center;
-    width: 40%;
-    font-weight: 600;
+  font-weight: 600;
+  text-align: left;
+  margin: 0;
+  width: 100%;
+}
+.modalTitle:disabled {
+  background-color: transparent;
+  color: black;
+}
+
+.modalTitleWrapper {
+  position: relative;
+  margin: 0 0 1rem;
+  width: 80%;
+}
+
+.modalTitleWrapper:hover .modalTitle {
+  border: 1px solid var(--light-red);
+}
+
+.modalIconWrapper {
+  display: inline-block;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+}
+
+.modalTitleWrapper:hover .modalIconWrapper {
+  opacity: 1;
+}
+
+.modalIcon {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .modalStatus {
-    background-color: var(--light-red);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 39px;
-    border-radius: 40px;
-    margin-bottom: 20px;
+  background-color: var(--light-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 40px;
+  height: 39px;
+  border-radius: 40px;
+  margin-bottom: 20px;
+}
+.modalStatus::after {
+  position: absolute;
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  font: var(--fa-font-solid);
+  content: '\f304';
+  cursor: pointer;
+  opacity: 0;
+  font-size: 14px;
+  color: transparent;
+  padding: 12px 11.5px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.modalStatus.selectClosed:hover::after {
+  opacity: 1;
+  color: rgba(0, 0, 0, 0.8);
+  /* font-size: 14px;
+  padding: 12px 11.5px; */
+  border-radius: 40px;
+  border: 1px solid var(--light-red);
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.modalStatusWrapper {
+  position: relative;
+}
+
+.select {
+  position: absolute;
+  padding: 0.7rem;
+  border-radius: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  background-color: rgb(254, 245, 231);
+  gap: 0.7rem;
+  left: 3rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.selectIcon {
+  padding: 0.1rem 0.35rem;
+  border-radius: 14px;
+  border: 1px solid var(--light-red);
+  cursor: pointer;
+}
+.active {
+  background-color: var(--light-red);
 }
 
 .modalContent {
-    width: 80%;
-    min-height: 70px;
+  width: 80%;
+  min-height: 70px;
 }
 
 .modalProgress {
-    width: 8%;
-    display: inline-block;
-    margin-right: 10px;
+  width: 3.5rem;
+  display: inline-block;
+  margin-right: 2px;
 }
 
 .modalButton {
-    padding: 8px 34px;
-    position: absolute;
-    bottom: 20px;
-    right: 46px;
-    background-color: var(--light-red);
+  padding: 8px 34px;
+  position: absolute;
+  bottom: 20px;
+  right: 46px;
+  background-color: var(--light-red);
 }
 
 .modalOutlineButton {
-    padding: 6px 24px;
-    border: 2px solid var(--light-red);
-    background-color: transparent;
-    right: 163px;
+  padding: 6px 24px;
+  border: 2px solid var(--light-red);
+  background-color: transparent;
+  right: 163px;
 }

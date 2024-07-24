@@ -49,11 +49,6 @@ const statuses = [
     status: 'In review',
     icon: '🔍️',
   },
-  {
-    statusId: 4,
-    status: 'Done',
-    icon: '🎉',
-  },
 ]
 
 export { data, statuses }
@@ -63,4 +58,28 @@ export const loginImages = [
   'https://images.unsplash.com/photo-1635377090186-036bca445c6b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80',
   'https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80',
   'https://images.unsplash.com/photo-1633907284646-7abf4a195875?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2064&q=80',
+]
+
+export const emojis = [
+  '🤩',
+  '🔥',
+  '🔍️',
+  '🎉',
+  '❗',
+  '🗄️',
+  '⚙️',
+  ' 🚚',
+  '🌎',
+  '🎯',
+  '🛫',
+  '💡',
+  '✅',
+  '❌',
+]
+
+export const themeColors = [
+  { name: 'Teal', code: '#028090' },
+  { name: 'Purple', code: 'purple' },
+  { name: 'Black', code: '#101010' },
+  { name: 'Blue', code: '#324ab2' },
 ]

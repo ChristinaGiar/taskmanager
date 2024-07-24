@@ -3,16 +3,10 @@ import BackgroundColor from './BackgroundColor'
 import User from './User'
 import classes from './Header.module.css'
 import { isLoggedIn } from '../utils/auth'
-
-const colors = [
-  { name: 'Teal', code: '#028090' },
-  { name: 'Purple', code: 'purple' },
-  { name: 'Black', code: '#101010' },
-  { name: 'Blue', code: '#324ab2' },
-]
+import { themeColors } from '../data'
 
 const Header = ({ name }) => {
-  const [activeColor, setActiveColor] = useState(colors[0])
+  const [activeColor, setActiveColor] = useState(themeColors[0])
   const activeColorHandler = (color) => {
     setActiveColor(color)
   }
@@ -21,7 +15,10 @@ const Header = ({ name }) => {
     return (
       <>
         {name && <div className={classes.greetingsTitle}>Hi, {name}!</div>}
-        <BackgroundColor getActiveColor={activeColorHandler} colors={colors} />
+        <BackgroundColor
+          getActiveColor={activeColorHandler}
+          colors={themeColors}
+        />
         <User color={activeColor} />
       </>
     )
