@@ -3,6 +3,7 @@ import { data, statuses as initialStatuses } from '../data/index'
 
 const AuthContext = React.createContext({
   items: data,
+  statuses: initialStatuses,
   setItems: () => {},
   dropHandler: () => {},
   moveHandler: () => {},
@@ -16,11 +17,11 @@ export const AuthContextProvider = (props) => {
   const [items, setItems] = useState(data)
   const [statuses, setStatuses] = useState(initialStatuses)
 
-  const dropHandler = (item, status, icon) => {
+  const dropHandler = (item, statusId) => {
     setItems((prevState) => {
       const newItems = prevState
         .filter((i) => i.id !== item.id)
-        .concat({ ...item, status, icon: icon })
+        .concat({ ...item, statusId: statusId })
       return newItems
     })
   }
@@ -34,23 +35,14 @@ export const AuthContextProvider = (props) => {
     })
   }
 
-  const addTaskHandler = (status, counter, columnItems) => {
+  const addTaskHandler = (statusId, counter, columnItems) => {
     setItems((prevState) => {
-      const column = columnItems.find((column) => column.status === status)
-      //   prevState.splice(prevState.length, 0, {
-      //     id: counter,
-      //     icon: column.icon,
-      //     status: column.status,
-      //     title: 'Task Title',
-      //     content: 'Task Description',
-      //     progress: '0',
-      //   })
-      // return [...prevState]
+      const column = columnItems.find((column) => column.id === statusId)
+
       return prevState.concat([
         {
           id: counter,
-          icon: column.icon,
-          status: column.status,
+          statusId: column.id,
           title: 'Task Title',
           content: 'Task Description',
           progress: '0',
@@ -80,7 +72,6 @@ export const AuthContextProvider = (props) => {
       const newStatusState = prevState.slice()
       newStatusState[newStatusIndex] = { ...newStatus }
       return newStatusState
-      // return [...prevState.filter(status => newStatus.id !== status.id), newStatus]
     })
   }
 
@@ -88,11 +79,14 @@ export const AuthContextProvider = (props) => {
     <AuthContext.Provider
       value={{
         items: items,
+        statuses: statuses,
         setItems: setItems,
         dropHandler: dropHandler,
         moveHandler: moveHandler,
         addTaskHandler: addTaskHandler,
         deleteTaskHandler: deleteTaskHandler,
+        addNewStatusHandler: addNewStatusHandler,
+        changeStatusesHandler: changeStatusesHandler,
       }}
     >
       {props.children}

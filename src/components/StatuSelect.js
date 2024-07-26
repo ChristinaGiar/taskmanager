@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import classes from './Modal.module.css'
+import classes from './TitleModal.module.css'
 import { emojis } from '../data'
+
 export const StatuSelect = ({ icon, iconChange }) => {
   const [iconSelect, setIconSelect] = useState(false)
   return (

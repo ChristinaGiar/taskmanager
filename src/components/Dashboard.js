@@ -4,13 +4,13 @@ import DropWrapper from './DropWrapper'
 import AddTask from './AddTask'
 import AddColumn from './AddColumn'
 import ScrollButtons from './ScrollButtons'
-import { data, statuses } from '../data/index'
+import { data } from '../data/index'
 
 import classes from './Dashboard.module.css'
 import AuthContext from '../store/auth-context'
+import TitleColumn from './TitleColumn'
 
 const Dashboard = () => {
-  const [columnItems, setColumnItems] = useState(statuses)
   const [counter, setCounter] = useState({
     dataCounter: data.length + 1,
     simpleCounter: 1,
@@ -18,13 +18,12 @@ const Dashboard = () => {
 
   const crx = useContext(AuthContext)
 
-  const onDrop = (item, monitor, status) => {
-    const mapping = columnItems.find((si) => si.status === status)
-    crx.dropHandler(item, status, mapping.icon)
+  const onDrop = (item, monitor, statusId) => {
+    crx.dropHandler(item, statusId)
   }
 
   const addItem = (status) => {
-    crx.addTaskHandler(status, counter.dataCounter, columnItems)
+    crx.addTaskHandler(status, counter.dataCounter, crx.statuses)
     setCounter((prevCounter) => ({
       ...prevCounter,
       dataCounter: prevCounter.dataCounter + 1,
@@ -40,37 +39,39 @@ const Dashboard = () => {
       simpleCounter: prevCounter.simpleCounter + 1,
     }))
 
-    setColumnItems((prevColumns) => [
-      ...prevColumns,
-      {
-        id: statuses.length + counter.simpleCounter,
-        status: `New Column ${counter.simpleCounter}`,
-        icon: '🎉',
-      },
-    ])
+    crx.addNewStatusHandler({
+      id: crx.statuses.length + counter.simpleCounter,
+      status: `New Column ${counter.simpleCounter}`,
+      icon: '🎉',
+    })
   }
 
   return (
     <div className={'container position-relative'}>
       <div className={`row ${classes.box} scroll-container`}>
-        {columnItems.map((s) => (
+        {crx.statuses.map((s) => (
           <div key={s.status} className={`col-6 col-sm-4 col-md-3`}>
             <div className={classes.columnWrapper}>
-              <h2 className={classes.columnHeader}>{s.status.toUpperCase()}</h2>
-              <DropWrapper onDrop={onDrop} status={s.status}>
+              <TitleColumn status={s} />
+              <DropWrapper onDrop={onDrop} statusId={s.id}>
                 <div>
                   {crx.items
-                    .filter((i) => i.status === s.status)
+                    .filter((i) => i.statusId === s.id)
                     .map((i, idx, array) => {
                       return (
-                        <Task key={i.id} task={i} deleteTask={deleteTask} />
+                        <Task
+                          key={i.id}
+                          task={i}
+                          deleteTask={deleteTask}
+                          icon={s.icon}
+                        />
                       )
                     })}
                 </div>
               </DropWrapper>
               <AddTask
                 items={crx.items}
-                status={s.status}
+                statusId={s.id}
                 addItem={addItem}
               ></AddTask>
             </div>

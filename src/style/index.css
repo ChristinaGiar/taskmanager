@@ -166,7 +166,6 @@ button {
 }
 
 .title-dropdown {
-  /* padding: 0 10px; */
   text-align: center;
   margin-bottom: 10px;
 }
@@ -245,4 +244,27 @@ button {
   .col-6 {
     padding: 0 0.5rem;
   }
+}
+
+/* Column title */
+.header {
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 5px 8px;
+  text-align: left;
+  margin: 0 0 0.5rem;
+  width: 100%;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: 0.3s color ease-in-out;
+}
+
+.header:hover {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.header:disabled {
+  background-color: transparent;
+  color: black;
 }

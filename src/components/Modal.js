@@ -21,19 +21,19 @@ const Modal = ({ task, onClose, nodeRef }) => {
 
   const saveDataHandler = (e) => {
     e.preventDefault()
+    console.log('crx.items', crx.items)
     crx.setItems((prevState) => {
-      let changedElement = prevState.find((el) => el.id === task.id)
-      if (changedElement) {
-        for (let el of prevState) {
-          if (JSON.stringify(el) === JSON.stringify(changedElement)) {
-            el.title = inputValues.title
-            el.content = inputValues.content
-            el.progress = inputValues.progress
-            el.icon = inputValues.icon
-          }
-        }
-        return prevState
-      }
+      let changedElIndex = prevState.findIndex((el) => el.id === task.id)
+      return [
+        ...prevState.filter((el) => el.id !== task.id),
+        {
+          ...prevState[changedElIndex],
+
+          title: inputValues.title,
+          content: inputValues.content,
+          progress: inputValues.progress,
+        },
+      ]
     })
     onClose()
   }
@@ -72,21 +72,14 @@ const Modal = ({ task, onClose, nodeRef }) => {
               disabled={isTitleDisabled}
             />
             <div className={classes.modalIconWrapper}>
-              {
-                <i
-                  className={`fa-solid ${
-                    isTitleDisabled ? 'fa-pen' : 'fa-check'
-                  } ${classes.modalIcon}`}
-                  onClick={() => setIsTitleDisabled(!isTitleDisabled)}
-                ></i>
-              }
+              <i
+                className={`fa-solid ${
+                  isTitleDisabled ? 'fa-pen' : 'fa-check'
+                } ${classes.modalIcon}`}
+                onClick={() => setIsTitleDisabled(!isTitleDisabled)}
+              ></i>
             </div>
           </div>
-          {/* <div className={classes.modalStatus}>{task.icon}</div> */}
-          <StatuSelect
-            icon={inputValues.icon || task.icon}
-            iconChange={iconChangeHandler}
-          />
           <label htmlFor='content'>Description</label>
           <textarea
             id='content'
