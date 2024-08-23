@@ -7,6 +7,7 @@ import ErrorPage from './pages/ErrorPage'
 import { tokenLoader } from './utils/auth'
 import { logoutAction } from './components/Logout'
 import { VerifyPage } from './pages/VerifyPage'
+import { AuthContextProvider } from './store/auth-context'
 
 const router = createBrowserRouter([
   {
@@ -36,7 +37,11 @@ const router = createBrowserRouter([
 ])
 
 const App = () => {
-  return <RouterProvider router={router} />
+  return (
+    <AuthContextProvider>
+      <RouterProvider router={router} />
+    </AuthContextProvider>
+  )
 }
 
 export default App

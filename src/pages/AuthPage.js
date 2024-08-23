@@ -153,7 +153,6 @@ const AuthPage = () => {
           <h3 className={classes.logoText}>my.task.manager</h3>
           <p className={classes.logoSubtext}>Your personal task manager.</p>
 
-          {console.log(data)}
           {data?.verificationModalShown ? (
             <VerificationModal email={data.email} />
           ) : (

@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { data, statuses as initialStatuses } from '../data/index'
+import { themeColors } from '../data/index'
 
 const AuthContext = React.createContext({
   items: data,
   statuses: initialStatuses,
+  themeColor: themeColors[0],
   dataIsLoaded: false,
   setItems: () => {},
   dropHandler: () => {},
@@ -11,12 +13,14 @@ const AuthContext = React.createContext({
   addTaskHandler: () => {},
   deleteTaskHandler: () => {},
   addNewStatusHandler: () => {},
+  themeColorHandler: () => {},
   changeStatusesHandler: () => {},
 })
 
 export const AuthContextProvider = (props) => {
   const [items, setItems] = useState(data)
   const [statuses, setStatuses] = useState(initialStatuses)
+  const [themeColor, setThemeColor] = useState(themeColors[0])
   const [dataIsLoaded, setDataIsLoaded] = useState(false)
 
   useEffect(() => {
@@ -29,6 +33,7 @@ export const AuthContextProvider = (props) => {
       if (user.userActivity) {
         setItems(user.userActivity.items)
         setStatuses(user.userActivity.statuses)
+        setThemeColor(user.userActivity.themeColor)
       }
       setDataIsLoaded(true)
     }
@@ -82,6 +87,10 @@ export const AuthContextProvider = (props) => {
     })
   }
 
+  const themeColorHandler = (color) => {
+    setThemeColor(color)
+  }
+
   const changeStatusesHandler = (newStatus) => {
     setStatuses((prevState) => {
       const newStatusIndex = prevState.findIndex(
@@ -98,6 +107,7 @@ export const AuthContextProvider = (props) => {
       value={{
         items: items,
         statuses: statuses,
+        themeColor: themeColor,
         dataIsLoaded: dataIsLoaded,
         setItems: setItems,
         dropHandler: dropHandler,
@@ -105,6 +115,7 @@ export const AuthContextProvider = (props) => {
         addTaskHandler: addTaskHandler,
         deleteTaskHandler: deleteTaskHandler,
         addNewStatusHandler: addNewStatusHandler,
+        themeColorHandler: themeColorHandler,
         changeStatusesHandler: changeStatusesHandler,
       }}
     >

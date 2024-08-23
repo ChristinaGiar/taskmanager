@@ -1,35 +1,36 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Dropdown from 'react-bootstrap/Dropdown'
+import AuthContext from '../store/auth-context'
+import { themeColors } from '../data/index'
 
-const BackgroundColor = (props) => {
-  const [activeColor, setActiveColor] = useState(props.colors[0])
+const BackgroundColor = () => {
+  const crx = useContext(AuthContext)
 
   const changeBgColorHandler = (color) => {
-    setActiveColor(color)
-    props.getActiveColor(color)
+    crx.themeColorHandler(color)
   }
 
   return (
     <>
-      <style>{`body { background-color: ${activeColor.code}; }`}</style>
+      <style>{`body { background-color: ${crx?.themeColor?.code}; }`}</style>
       <div className='color-dropdown'>
         <Dropdown>
           <Dropdown.Toggle id='color-dropdown'>
             <i
               className='fa-solid fa-droplet'
-              style={{ color: `${activeColor.code}` }}
+              style={{ color: `${crx?.themeColor?.code}` }}
             ></i>
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <div className='title-dropdown'> Change color</div>
             <div className='color-dropdown-items'>
-              {props.colors.map((color, idx) => {
+              {themeColors.map((color, idx) => {
                 return (
                   <Dropdown.Item
                     key={idx}
                     value={color.code}
                     className={`color-box ${
-                      activeColor.code === color.code ? 'active' : ''
+                      crx?.themeColor?.code === color.code ? 'active' : ''
                     } `}
                     style={{ backgroundColor: `${color.code}` }}
                     onClick={() => changeBgColorHandler(color)}

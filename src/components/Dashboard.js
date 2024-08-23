@@ -28,6 +28,7 @@ const Dashboard = () => {
                 body: JSON.stringify({
                   items: crx.items,
                   statuses: crx.statuses,
+                  themeColor: crx.themeColor,
                   userId: localStorage.getItem('userId'),
                 }),
               }
@@ -44,7 +45,7 @@ const Dashboard = () => {
     }, 1000)
 
     return () => clearTimeout(changesTimer)
-  }, [crx.items, crx.statuses])
+  }, [crx.items, crx.statuses, crx.themeColor])
 
   const [counter, setCounter] = useState({
     dataCounter: crx.items.length + 1,
