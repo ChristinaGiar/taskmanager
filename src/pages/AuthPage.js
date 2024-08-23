@@ -93,6 +93,7 @@ export const authAction = async ({ params, request }) => {
     localStorage.setItem('token-expiration', new Date(expiration).toISOString())
     localStorage.setItem('isVerified', resData.user.isVerified)
     localStorage.setItem('name', resData.user.name)
+    localStorage.setItem('userId', resData.user.id)
 
     if (resData.user.isVerified) {
       return redirect('/')

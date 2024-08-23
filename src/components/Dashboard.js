@@ -1,29 +1,62 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Task from './Task'
 import DropWrapper from './DropWrapper'
 import AddTask from './AddTask'
 import AddColumn from './AddColumn'
 import ScrollButtons from './ScrollButtons'
-import { data } from '../data/index'
 
 import classes from './Dashboard.module.css'
 import AuthContext from '../store/auth-context'
 import TitleColumn from './TitleColumn'
 
 const Dashboard = () => {
+  const crx = useContext(AuthContext)
+
+  useEffect(() => {
+    const changesTimer = setTimeout(() => {
+      if (crx.dataIsLoaded) {
+        console.log('crx.dataIsLoaded', crx.dataIsLoaded)
+        try {
+          const saveDataInDB = async () => {
+            const response = await fetch(
+              'http://localhost:8080/saveUserActivity',
+              {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  items: crx.items,
+                  statuses: crx.statuses,
+                  userId: localStorage.getItem('userId'),
+                }),
+              }
+            )
+            const message = await response.json()
+            console.log(message)
+          }
+          saveDataInDB()
+          console.log('CHANGE')
+        } catch (error) {
+          console.error(error)
+        }
+      }
+    }, 1000)
+
+    return () => clearTimeout(changesTimer)
+  }, [crx.items, crx.statuses])
+
   const [counter, setCounter] = useState({
-    dataCounter: data.length + 1,
+    dataCounter: crx.items.length + 1,
     simpleCounter: 1,
   })
-
-  const crx = useContext(AuthContext)
 
   const onDrop = (item, monitor, statusId) => {
     crx.dropHandler(item, statusId)
   }
 
   const addItem = (status) => {
-    crx.addTaskHandler(status, counter.dataCounter, crx.statuses)
+    crx.addTaskHandler(status, crx.statuses)
     setCounter((prevCounter) => ({
       ...prevCounter,
       dataCounter: prevCounter.dataCounter + 1,

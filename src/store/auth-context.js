@@ -1,9 +1,10 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { data, statuses as initialStatuses } from '../data/index'
 
 const AuthContext = React.createContext({
   items: data,
   statuses: initialStatuses,
+  dataIsLoaded: false,
   setItems: () => {},
   dropHandler: () => {},
   moveHandler: () => {},
@@ -16,6 +17,23 @@ const AuthContext = React.createContext({
 export const AuthContextProvider = (props) => {
   const [items, setItems] = useState(data)
   const [statuses, setStatuses] = useState(initialStatuses)
+  const [dataIsLoaded, setDataIsLoaded] = useState(false)
+
+  useEffect(() => {
+    const userActivityUpdate = async () => {
+      const response = await fetch(
+        'http://localhost:8080/getUserActivity?id=' +
+          localStorage.getItem('userId')
+      )
+      const user = await response.json()
+      if (user.userActivity) {
+        setItems(user.userActivity.items)
+        setStatuses(user.userActivity.statuses)
+      }
+      setDataIsLoaded(true)
+    }
+    userActivityUpdate()
+  }, [])
 
   const dropHandler = (item, statusId) => {
     setItems((prevState) => {
@@ -35,13 +53,13 @@ export const AuthContextProvider = (props) => {
     })
   }
 
-  const addTaskHandler = (statusId, counter, columnItems) => {
+  const addTaskHandler = (statusId, columnItems) => {
     setItems((prevState) => {
       const column = columnItems.find((column) => column.id === statusId)
 
       return prevState.concat([
         {
-          id: counter,
+          id: items.length + 1,
           statusId: column.id,
           title: 'Task Title',
           content: 'Task Description',
@@ -80,6 +98,7 @@ export const AuthContextProvider = (props) => {
       value={{
         items: items,
         statuses: statuses,
+        dataIsLoaded: dataIsLoaded,
         setItems: setItems,
         dropHandler: dropHandler,
         moveHandler: moveHandler,
