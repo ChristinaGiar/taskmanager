@@ -5,6 +5,7 @@ import {
   useActionData,
   useLocation,
   useRouteLoaderData,
+  Navigate,
 } from 'react-router-dom'
 import classes from './AuthPage.module.css'
 import { smtpexpressClient } from '../utils/smtp'
@@ -13,6 +14,7 @@ import { VerificationModal } from '../components/VerificationModal'
 import { loginImages } from '../data'
 import { AuthForm } from '../components/AuthForm'
 import { BACKEND_URL_LOCAL } from '../utils/constants'
+import { isLoggedIn } from '../utils/auth'
 
 const sendEmail = async (userName, emailURL, email) => {
   try {
@@ -112,17 +114,23 @@ const AuthPage = () => {
   let data = useActionData()
   const token = useRouteLoaderData('root')
   let isExpired = token === 'EXPIRED'
-
   const location = useLocation()
+  const [loginImg, setLoginImg] = useState(loginImages[0])
+  const [isClicked, setIsClicked] = useState(false)
+
+  useEffect(() => {
+    setLoginImg(loginImages[randomNumber(0, 3)])
+  }, [])
+
+  if (isLoggedIn()) {
+    return <Navigate to='/' replace={true} />
+  }
   const searchParams = new URLSearchParams(location.search)
   let isLogin = searchParams.get('mode') === 'login'
 
   function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min
   }
-
-  const [loginImg, setLoginImg] = useState(loginImages[0])
-  const [isClicked, setIsClicked] = useState(false)
 
   const handleClick = () => {
     setIsClicked(true)
@@ -131,10 +139,6 @@ const AuthPage = () => {
   const resetForm = () => {
     setIsClicked(false)
   }
-
-  useEffect(() => {
-    setLoginImg(loginImages[randomNumber(0, 3)])
-  }, [])
 
   return (
     <>
