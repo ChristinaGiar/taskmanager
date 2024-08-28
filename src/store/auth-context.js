@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { data, statuses as initialStatuses } from '../data/index'
 import { themeColors } from '../data/index'
+import { BACKEND_URL_LOCAL } from '../utils/constants'
 
 const AuthContext = React.createContext({
   items: data,
@@ -26,7 +27,8 @@ export const AuthContextProvider = (props) => {
   useEffect(() => {
     const userActivityUpdate = async () => {
       const response = await fetch(
-        'http://localhost:8080/getUserActivity?id=' +
+        BACKEND_URL_LOCAL +
+          'getUserActivity?id=' +
           localStorage.getItem('userId')
       )
       const user = await response.json()

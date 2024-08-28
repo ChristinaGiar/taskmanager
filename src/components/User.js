@@ -3,7 +3,7 @@ import { useRouteLoaderData, Form } from 'react-router-dom'
 import Dropdown from 'react-bootstrap/Dropdown'
 import AuthContext from '../store/auth-context'
 
-const User = ({ color }) => {
+const User = () => {
   const token = useRouteLoaderData('root')
   const crx = useContext(AuthContext)
   return (
@@ -17,14 +17,6 @@ const User = ({ color }) => {
             ></i>
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            {/* {!token && 
-                            <Link to="/auth?mode=login" className="user-link">
-                                Login
-                            </Link>}
-                        {!token && 
-                            <Link to="/auth?mode=signup" className="user-link">
-                                Sign up
-                            </Link>} */}
             {token && token !== 'EXPIRED' && (
               <Form action='/logout' method='post'>
                 <button className='user-link'>Logout</button>

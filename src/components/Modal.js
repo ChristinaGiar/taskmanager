@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react'
 import classes from './Modal.module.css'
 
 import AuthContext from '../store/auth-context'
-import { StatuSelect } from './StatuSelect'
 
 const Modal = ({ task, onClose, nodeRef }) => {
   const crx = useContext(AuthContext)
@@ -21,7 +20,6 @@ const Modal = ({ task, onClose, nodeRef }) => {
 
   const saveDataHandler = (e) => {
     e.preventDefault()
-    console.log('crx.items', crx.items)
     crx.setItems((prevState) => {
       let changedElIndex = prevState.findIndex((el) => el.id === task.id)
       return [
@@ -48,10 +46,6 @@ const Modal = ({ task, onClose, nodeRef }) => {
 
   const progressChangeHandler = (e) => {
     setInputValues((prevState) => ({ ...prevState, progress: e.target.value }))
-  }
-
-  const iconChangeHandler = (icon) => {
-    setInputValues((prevState) => ({ ...prevState, icon: icon }))
   }
 
   return (

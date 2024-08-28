@@ -12,8 +12,9 @@ import { InfoBanner } from '../components/InfoBanner'
 import { VerificationModal } from '../components/VerificationModal'
 import { loginImages } from '../data'
 import { AuthForm } from '../components/AuthForm'
+import { BACKEND_URL_LOCAL } from '../utils/constants'
 
-const sendEmail = async (userName, emailURL) => {
+const sendEmail = async (userName, emailURL, email) => {
   try {
     await smtpexpressClient.sendApi.sendMail({
       subject: 'Welcome to My Task Manager: Email verification',
@@ -65,8 +66,8 @@ export const authAction = async ({ params, request }) => {
   }
 
   let response
-  response = await fetch('http://localhost:8080/' + mode, {
-    //https://taskmanagerback.onrender.com/
+  response = await fetch(BACKEND_URL_LOCAL + mode, {
+    //BACKEND_URL
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -83,7 +84,7 @@ export const authAction = async ({ params, request }) => {
     throw json({ message: 'Could not authenticate user.' }, { status: 500 })
   }
   if (mode === 'signup') {
-    sendEmail(data.name, resData.emailURL)
+    sendEmail(data.name, resData.emailURL, data.email)
 
     return { email: data.email, verificationModalShown: true }
   } else {

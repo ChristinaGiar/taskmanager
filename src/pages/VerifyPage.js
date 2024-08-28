@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { WhiteBox } from '../components/styledComponents/WhiteBox'
 import ErrorPage from './ErrorPage'
 import { isLoggedIn } from '../utils/auth'
+import { BACKEND_URL_LOCAL } from '../utils/constants'
 
 export const VerifyPage = () => {
   const [verified, setVerified] = useState({ isVerified: null, status: '' })
@@ -14,7 +15,7 @@ export const VerifyPage = () => {
       if (query) {
         try {
           const response = await fetch(
-            encodeURI('http://localhost:8080/verify?token=' + query)
+            encodeURI(BACKEND_URL_LOCAL + 'verify?token=' + query)
           )
           const token = await response.json()
           setVerified({ status: response.status, isVerified: token.isVerified })

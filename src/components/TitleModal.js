@@ -6,7 +6,6 @@ import { StatuSelect } from './StatuSelect'
 
 const TitleModal = ({ status, onClose, nodeRef }) => {
   const crx = useContext(AuthContext)
-  console.log('status', status)
 
   const [inputValues, setInputValues] = useState({
     status: status.status,
@@ -20,7 +19,6 @@ const TitleModal = ({ status, onClose, nodeRef }) => {
 
   const saveDataHandler = (e) => {
     e.preventDefault()
-    console.log('crx.items', crx.items)
     crx.changeStatusesHandler({
       id: status.id,
       status: inputValues.status,

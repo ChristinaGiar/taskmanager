@@ -8,6 +8,7 @@ import ScrollButtons from './ScrollButtons'
 import classes from './Dashboard.module.css'
 import AuthContext from '../store/auth-context'
 import TitleColumn from './TitleColumn'
+import { BACKEND_URL_LOCAL } from '../utils/constants'
 
 const Dashboard = () => {
   const crx = useContext(AuthContext)
@@ -15,11 +16,10 @@ const Dashboard = () => {
   useEffect(() => {
     const changesTimer = setTimeout(() => {
       if (crx.dataIsLoaded) {
-        console.log('crx.dataIsLoaded', crx.dataIsLoaded)
         try {
           const saveDataInDB = async () => {
             const response = await fetch(
-              'http://localhost:8080/saveUserActivity',
+              BACKEND_URL_LOCAL + 'saveUserActivity',
               {
                 method: 'POST',
                 headers: {
@@ -37,7 +37,6 @@ const Dashboard = () => {
             console.log(message)
           }
           saveDataInDB()
-          console.log('CHANGE')
         } catch (error) {
           console.error(error)
         }
