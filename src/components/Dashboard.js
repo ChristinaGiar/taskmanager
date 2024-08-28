@@ -44,6 +44,7 @@ const Dashboard = () => {
     }, 1000)
 
     return () => clearTimeout(changesTimer)
+    // eslint-disable-next-line
   }, [crx.items, crx.statuses, crx.themeColor])
 
   const [counter, setCounter] = useState({
