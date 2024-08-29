@@ -8,18 +8,18 @@ import ScrollButtons from './ScrollButtons'
 import classes from './Dashboard.module.css'
 import AuthContext from '../store/auth-context'
 import TitleColumn from './TitleColumn'
-import { BACKEND_URL_LOCAL } from '../utils/constants'
+import { isLoggedIn } from '../utils/auth'
 
 const Dashboard = () => {
   const crx = useContext(AuthContext)
 
   useEffect(() => {
     const changesTimer = setTimeout(() => {
-      if (crx.dataIsLoaded) {
+      if (crx.dataIsLoaded && isLoggedIn()) {
         try {
           const saveDataInDB = async () => {
             const response = await fetch(
-              BACKEND_URL_LOCAL + 'saveUserActivity',
+              process.env.REACT_APP_BACKEND_URL + 'saveUserActivity',
               {
                 method: 'POST',
                 headers: {

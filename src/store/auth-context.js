@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { data, statuses as initialStatuses } from '../data/index'
 import { themeColors } from '../data/index'
-import { BACKEND_URL_LOCAL } from '../utils/constants'
 
 const AuthContext = React.createContext({
   items: data,
@@ -16,6 +15,8 @@ const AuthContext = React.createContext({
   addNewStatusHandler: () => {},
   themeColorHandler: () => {},
   changeStatusesHandler: () => {},
+  getUserActivityHanlder: () => {},
+  setDataIsLoadedHandler: () => {},
 })
 
 export const AuthContextProvider = (props) => {
@@ -23,24 +24,6 @@ export const AuthContextProvider = (props) => {
   const [statuses, setStatuses] = useState(initialStatuses)
   const [themeColor, setThemeColor] = useState(themeColors[0])
   const [dataIsLoaded, setDataIsLoaded] = useState(false)
-
-  useEffect(() => {
-    const userActivityUpdate = async () => {
-      const response = await fetch(
-        BACKEND_URL_LOCAL +
-          'getUserActivity?id=' +
-          localStorage.getItem('userId')
-      )
-      const user = await response.json()
-      if (user.userActivity) {
-        setItems(user.userActivity.items)
-        setStatuses(user.userActivity.statuses)
-        setThemeColor(user.userActivity.themeColor)
-      }
-      setDataIsLoaded(true)
-    }
-    userActivityUpdate()
-  }, [])
 
   const dropHandler = (item, statusId) => {
     setItems((prevState) => {
@@ -104,6 +87,16 @@ export const AuthContextProvider = (props) => {
     })
   }
 
+  const getUserActivityHanlder = (items, statuses, themeColor) => {
+    setItems(items)
+    setStatuses(statuses)
+    setThemeColor(themeColor)
+  }
+
+  const setDataIsLoadedHandler = (boolValue) => {
+    setDataIsLoaded(boolValue)
+  }
+
   return (
     <AuthContext.Provider
       value={{
@@ -119,6 +112,8 @@ export const AuthContextProvider = (props) => {
         addNewStatusHandler: addNewStatusHandler,
         themeColorHandler: themeColorHandler,
         changeStatusesHandler: changeStatusesHandler,
+        getUserActivityHanlder: getUserActivityHanlder,
+        setDataIsLoadedHandler: setDataIsLoadedHandler,
       }}
     >
       {props.children}

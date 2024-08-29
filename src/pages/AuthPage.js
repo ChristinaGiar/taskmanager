@@ -13,7 +13,6 @@ import { InfoBanner } from '../components/InfoBanner'
 import { VerificationModal } from '../components/VerificationModal'
 import { loginImages } from '../data'
 import { AuthForm } from '../components/AuthForm'
-import { BACKEND_URL_LOCAL } from '../utils/constants'
 import { isLoggedIn } from '../utils/auth'
 
 const sendEmail = async (userName, emailURL, email) => {
@@ -68,8 +67,7 @@ export const authAction = async ({ params, request }) => {
   }
 
   let response
-  response = await fetch(BACKEND_URL_LOCAL + mode, {
-    //BACKEND_URL
+  response = await fetch(process.env.REACT_APP_BACKEND_URL + mode, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
