@@ -1,6 +1,6 @@
 import { createClient } from 'smtpexpress'
 
 export const smtpexpressClient = createClient({
-  projectId: import.meta.env.EMAIL_PROJECT_ID,
-  projectSecret: import.meta.env.EMAIL_PROJECT_SECRET,
+  projectId: process.env.REACT_APP_EMAIL_PROJECT_ID,
+  projectSecret: process.env.REACT_APP_EMAIL_PROJECT_SECRET,
 })
