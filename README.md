@@ -2,11 +2,7 @@
 
 ## Description
 
-A task management app with draggable, customizable tasks and columns, user settings and authentication flow, including email verification.
-
-## Preview
-
-![](https://github.com/ChristinaGiar/christify-frontend/blob/master/gif/Christify%20gif.gif)
+A task management app with draggable, customizable tasks and columns, user settings and JWT authentication flow, including email verification.
 
 ## Architecture
 
