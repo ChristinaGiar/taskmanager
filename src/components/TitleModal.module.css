@@ -140,15 +140,15 @@
   transform: translateY(-50%);
   z-index: 10;
   display: grid;
-  width: 8.2rem;
   grid-template-columns: repeat(3, 1fr);
 }
 
 .selectIcon {
-  padding: 0.1rem 0.35rem;
-  border-radius: 14px;
+  padding: 0.3rem 0.38rem;
+  border-radius: 25px;
   border: 1px solid var(--light-red);
   cursor: pointer;
+  font-size: 0.9rem;
 }
 
 .active {
@@ -172,7 +172,6 @@
 
 @media (max-width: 768px) {
   .select {
-    width: 16.1rem;
     grid-template-columns: repeat(6, 1fr);
   }
 
