@@ -25,7 +25,7 @@ const sendEmail = async (userName, emailURL, email) => {
         email: 'sm0pid-3E2AdEaB2cI_Wd485D6nBlMnK@projects.smtpexpress.com',
       },
       recipients: {
-        email: 'examplee1245@gmail.com',
+        email: email,
       },
     })
     console.log('Email sent!')
