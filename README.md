@@ -4,6 +4,10 @@
 
 A task management app with draggable, customizable tasks and columns, user settings and JWT authentication flow, including email verification.
 
+## Preview
+
+![](https://github.com/ChristinaGiar/taskmanagerFront/blob/main/task-manager.gif)
+
 ## Architecture
 
 - Frontend - [ReactJS](https://react.dev/) with [React DND](https://github.com/react-dnd/react-dnd) and [SMTP Express](https://smtpexpress.com/)
