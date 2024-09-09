@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import TitleModal from './TitleModal'
 import { CSSTransition } from 'react-transition-group'
 import ReactDOM from 'react-dom'
@@ -10,6 +10,7 @@ const TitleColumn = ({ status }) => {
   const toggleModal = () => {
     setColumnTitleClicked((prevState) => !prevState)
   }
+
   return (
     <>
       <h2 className='header' onClick={toggleModal}>

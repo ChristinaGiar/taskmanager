@@ -1,4 +1,4 @@
-import { React, useContext, useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
@@ -30,9 +30,11 @@ const Homepage = () => {
     <>
       {!isLoggedIn() && <Navigate to='/auth?mode=login' />}
 
-      <DndProvider backend={HTML5Backend}>
-        <Dashboard />
-      </DndProvider>
+      {crx.dataIsLoaded && (
+        <DndProvider backend={HTML5Backend}>
+          <Dashboard />
+        </DndProvider>
+      )}
     </>
   )
 }

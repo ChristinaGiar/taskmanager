@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { WhiteBox } from '../components/styledComponents/WhiteBox'
 import ErrorPage from './ErrorPage'

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Task from './Task'
 import DropWrapper from './DropWrapper'
 import AddTask from './AddTask'
@@ -15,7 +15,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const changesTimer = setTimeout(() => {
-      if (crx.dataIsLoaded && isLoggedIn()) {
+      if (isLoggedIn()) {
         try {
           const saveDataInDB = async () => {
             const response = await fetch(
@@ -49,7 +49,7 @@ const Dashboard = () => {
 
   const [counter, setCounter] = useState({
     dataCounter: crx.items.length + 1,
-    simpleCounter: 1,
+    columnCounter: crx.statuses.length + 1,
   })
 
   const onDrop = (item, monitor, statusId) => {
@@ -70,12 +70,12 @@ const Dashboard = () => {
   const addColumn = () => {
     setCounter((prevCounter) => ({
       ...prevCounter,
-      simpleCounter: prevCounter.simpleCounter + 1,
+      columnCounter: prevCounter.columnCounter + 1,
     }))
 
     crx.addNewStatusHandler({
-      id: crx.statuses.length + counter.simpleCounter,
-      status: `New Column ${counter.simpleCounter}`,
+      id: counter.columnCounter,
+      status: `New Column ${counter.columnCounter}`,
       icon: '🎉',
     })
   }
@@ -84,7 +84,7 @@ const Dashboard = () => {
     <div className={'container position-relative'}>
       <div className={`row ${classes.box} scroll-container`}>
         {crx.statuses.map((s) => (
-          <div key={s.status} className={`col-6 col-sm-4 col-md-3`}>
+          <div key={s.id} className={`col-6 col-sm-4 col-md-3`}>
             <div className={classes.columnWrapper}>
               <TitleColumn status={s} />
               <DropWrapper onDrop={onDrop} statusId={s.id}>

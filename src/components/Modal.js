@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import classes from './Modal.module.css'
 
 import AuthContext from '../store/auth-context'
@@ -13,10 +13,6 @@ const Modal = ({ task, onClose, nodeRef }) => {
     icon: task.icon,
   })
   const [isTitleDisabled, setIsTitleDisabled] = useState(true)
-
-  const onCloseHandler = () => {
-    onClose()
-  }
 
   const saveDataHandler = (e) => {
     e.preventDefault()
@@ -53,7 +49,7 @@ const Modal = ({ task, onClose, nodeRef }) => {
       <div className={`${classes.modal} transition-modal`} ref={nodeRef}>
         <i
           className={`fa-solid fa-xmark ${classes.modalExit}`}
-          onClick={onCloseHandler}
+          onClick={onClose}
         ></i>
         <form onSubmit={saveDataHandler}>
           <div className={classes.modalTitleWrapper}>
@@ -98,15 +94,11 @@ const Modal = ({ task, onClose, nodeRef }) => {
           </div>
           <button
             className={`${classes.modalButton} ${classes.modalOutlineButton}`}
-            onClick={onCloseHandler}
+            onClick={onClose}
           >
             Cancel
           </button>
-          <button
-            type='sybmit'
-            className={classes.modalButton}
-            // onClick={saveDataHandler}
-          >
+          <button type='sybmit' className={classes.modalButton}>
             Save
           </button>
         </form>

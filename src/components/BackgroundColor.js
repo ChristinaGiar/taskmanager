@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import Dropdown from 'react-bootstrap/Dropdown'
 import AuthContext from '../store/auth-context'
 import { themeColors } from '../data/index'

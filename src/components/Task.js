@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import { useState, useRef } from 'react'
 import ReactDOM from 'react-dom'
 import { useDrag } from 'react-dnd'
 import Modal from './Modal'
@@ -6,7 +6,7 @@ import { CSSTransition } from 'react-transition-group'
 
 import classes from './Task.module.css'
 
-// hovered component
+// Hovered component
 const Task = ({ task, deleteTask, icon }) => {
   const ref = useRef(null)
   const nodeRef = useRef(null)

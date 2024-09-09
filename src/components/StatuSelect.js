@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import classes from './TitleModal.module.css'
 import { emojis } from '../data'
 
 export const StatuSelect = ({ icon, iconChange }) => {
   const [iconSelect, setIconSelect] = useState(false)
+
   return (
     <div className={classes.modalStatusWrapper}>
       <div

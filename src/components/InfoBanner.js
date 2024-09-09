@@ -1,4 +1,3 @@
-import React from 'react'
 import classes from './InfoBanner.module.css'
 
 export const InfoBanner = ({ text, isWarning, clickFunc }) => {

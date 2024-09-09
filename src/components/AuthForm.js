@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Form, Link } from 'react-router-dom'
 import classes from './AuthForm.module.css'
 import Loader from './Loader'
+
 export const AuthForm = ({
   resetForm,
   data,
@@ -10,6 +11,7 @@ export const AuthForm = ({
   setIsLoading,
 }) => {
   const [passwordShown, setPasswordShown] = useState(false)
+
   return (
     <Form
       method='post'
