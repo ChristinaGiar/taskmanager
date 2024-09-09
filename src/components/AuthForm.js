@@ -1,13 +1,23 @@
 import React, { useState } from 'react'
 import { Form, Link } from 'react-router-dom'
 import classes from './AuthForm.module.css'
-export const AuthForm = ({ resetForm, data, isLogin }) => {
+import Loader from './Loader'
+export const AuthForm = ({
+  resetForm,
+  data,
+  isLogin,
+  isLoading,
+  setIsLoading,
+}) => {
   const [passwordShown, setPasswordShown] = useState(false)
   return (
     <Form
       method='post'
       className={classes.loginForm}
-      onSubmit={() => resetForm()}
+      onSubmit={() => {
+        setIsLoading(true)
+        resetForm()
+      }}
     >
       <div className={classes.loginInputWrapper}>
         <label className={classes.loginLabel} htmlFor='email'>
@@ -75,7 +85,7 @@ export const AuthForm = ({ resetForm, data, isLogin }) => {
       )}
       <div className={classes.loginButtonWrapper}>
         <button className={classes.button}>
-          {isLogin ? 'Login' : 'Sign up'}
+          {isLoading ? <Loader /> : isLogin ? 'Login' : 'Sign up'}
         </button>
         <div className={classes.subButton}>
           {isLogin ? "Don't have an account?" : 'Have an account?'}

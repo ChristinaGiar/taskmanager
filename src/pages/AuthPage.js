@@ -113,12 +113,18 @@ const AuthPage = () => {
   const token = useRouteLoaderData('root')
   let isExpired = token === 'EXPIRED'
   const location = useLocation()
+
   const [loginImg, setLoginImg] = useState(loginImages[0])
-  const [isClicked, setIsClicked] = useState(false)
+  const [isCloseClicked, setIsCloseClicked] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     setLoginImg(loginImages[randomNumber(0, 3)])
   }, [])
+
+  useEffect(() => {
+    setIsLoading(false)
+  }, [data])
 
   if (isLoggedIn()) {
     return <Navigate to='/' replace={true} />
@@ -130,12 +136,12 @@ const AuthPage = () => {
     return Math.floor(Math.random() * (max - min + 1)) + min
   }
 
-  const handleClick = () => {
-    setIsClicked(true)
+  const handleCloseBanner = () => {
+    setIsCloseClicked(true)
   }
 
   const resetForm = () => {
-    setIsClicked(false)
+    setIsCloseClicked(false)
   }
 
   return (
@@ -173,10 +179,17 @@ const AuthPage = () => {
                   ? 'Enter your credentials to access your account.'
                   : "Let's get started."}
               </div>
-              <AuthForm resetForm={resetForm} data={data} isLogin={isLogin} />
+              <AuthForm
+                resetForm={resetForm}
+                data={data}
+                isLogin={isLogin}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+              />
             </>
           )}
         </div>
+
         {!data?.verificationModalShown && (
           <div className={`${classes.loginCol} ${classes.loginColRight}`}>
             <img className={classes.loginImg} src={loginImg} alt='login' />
@@ -184,16 +197,19 @@ const AuthPage = () => {
         )}
       </div>
 
-      {data?.verificationPending && !isClicked && (
+      {data?.verificationPending && !isCloseClicked && (
         <InfoBanner
           text={data.verificationError}
           isWarning
-          clickFunc={handleClick}
+          clickFunc={handleCloseBanner}
         />
       )}
 
-      {data?.serverError?.noMatch && !isClicked && (
-        <InfoBanner text={data?.serverError?.noMatch} clickFunc={handleClick} />
+      {data?.serverError?.noMatch && !isCloseClicked && (
+        <InfoBanner
+          text={data?.serverError?.noMatch}
+          clickFunc={handleCloseBanner}
+        />
       )}
     </>
   )
