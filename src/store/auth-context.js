@@ -15,7 +15,7 @@ const AuthContext = React.createContext({
   addNewStatusHandler: () => {},
   themeColorHandler: () => {},
   changeStatusesHandler: () => {},
-  getUserActivityHanlder: () => {},
+  getUserActivityHandler: () => {},
   setDataIsLoadedHandler: () => {},
 })
 
@@ -87,7 +87,7 @@ export const AuthContextProvider = (props) => {
     })
   }
 
-  const getUserActivityHanlder = (items, statuses, themeColor) => {
+  const getUserActivityHandler = (items, statuses, themeColor) => {
     setItems(items)
     setStatuses(statuses)
     setThemeColor(themeColor)
@@ -112,7 +112,7 @@ export const AuthContextProvider = (props) => {
         addNewStatusHandler: addNewStatusHandler,
         themeColorHandler: themeColorHandler,
         changeStatusesHandler: changeStatusesHandler,
-        getUserActivityHanlder: getUserActivityHanlder,
+        getUserActivityHandler: getUserActivityHandler,
         setDataIsLoadedHandler: setDataIsLoadedHandler,
       }}
     >

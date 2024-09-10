@@ -19,7 +19,7 @@ const Homepage = () => {
       const user = await response.json()
       if (user.userActivity) {
         const { items, statuses, themeColor } = user.userActivity
-        crx.getUserActivityHanlder(items, statuses, themeColor)
+        crx.getUserActivityHandler(items, statuses, themeColor)
       }
       crx.setDataIsLoadedHandler(true)
     }
