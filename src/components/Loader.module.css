@@ -10,6 +10,11 @@
   margin: 0 auto;
 }
 
+.loader.big {
+  width: 45px;
+  height: 45px;
+}
+
 @keyframes spinner {
   100% {
     transform: rotate(1turn);

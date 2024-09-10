@@ -1,5 +1,9 @@
 import classes from './Loader.module.css'
 
-const Loader = () => <div className={classes.loader}></div>
+const Loader = ({ loaderSize }) => (
+  <div
+    className={`${classes.loader} ${loaderSize && classes[loaderSize]} `}
+  ></div>
+)
 
 export default Loader

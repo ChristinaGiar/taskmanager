@@ -5,6 +5,8 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import { isLoggedIn } from '../utils/auth'
 import Dashboard from '../components/Dashboard'
 import AuthContext from '../store/auth-context'
+import Loader from '../components/Loader'
+import classes from './Homepage.module.css'
 
 const Homepage = () => {
   const crx = useContext(AuthContext)
@@ -30,10 +32,14 @@ const Homepage = () => {
     <>
       {!isLoggedIn() && <Navigate to='/auth?mode=login' />}
 
-      {crx.dataIsLoaded && (
+      {crx.dataIsLoaded ? (
         <DndProvider backend={HTML5Backend}>
           <Dashboard />
         </DndProvider>
+      ) : (
+        <div className={classes.hpLoader}>
+          <Loader loaderSize='big' />
+        </div>
       )}
     </>
   )
