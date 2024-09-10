@@ -18,7 +18,7 @@ const Dashboard = () => {
       if (isLoggedIn()) {
         try {
           const saveDataInDB = async () => {
-            const response = await fetch(
+            await fetch(
               process.env.REACT_APP_BACKEND_URL + 'saveUserActivity',
               {
                 method: 'POST',
@@ -33,8 +33,6 @@ const Dashboard = () => {
                 }),
               }
             )
-            const message = await response.json()
-            console.log(message)
           }
           saveDataInDB()
         } catch (error) {
